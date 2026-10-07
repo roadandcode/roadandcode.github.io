@@ -66,15 +66,82 @@
     {
       "id": "neon-rush",
       "title": "Neon Rush",
-      "tagline": "Endless runner built to load fast and hold 60 fps in the browser.",
-      "status": "planned",
+      "tagline": "A three-lane endless runner for the browser, built small but structured like a production game.",
+      "status": "live",
+      "year": "2026",
+      "role": "Solo: design, code, UI, build",
       "skills": [
         "gameplay",
         "web"
       ],
       "platforms": [
-        "web",
-        "windows"
+        "web"
+      ],
+      "stack": [
+        "Unity 6",
+        "URP",
+        "C#",
+        "VContainer",
+        "UI Toolkit",
+        "Input System",
+        "Addressables"
+      ],
+      "media": {
+        "cover": "assets/projects/neon-rush/title.jpg",
+        "shots": [
+          "assets/projects/neon-rush/run.jpg",
+          "assets/projects/neon-rush/crash.jpg",
+          "assets/projects/neon-rush/game-over.jpg",
+          "assets/projects/neon-rush/title.jpg"
+        ]
+      },
+      "build": {
+        "repo": "roadandcode/neon-rush"
+      },
+      "links": {
+        "source": "https://github.com/roadandcode/neon-rush"
+      },
+      "summary": [
+        "Neon Rush is my take on the endless runner: three lanes, a jump, a slide, three kinds of hazard, pickups with a combo multiplier, and a difficulty curve that speeds the run up without shrinking the time you have to react.",
+        "It is a small game on purpose. I used it to show how I set up a Unity project that is expected to grow: modules with enforced boundaries, rules that run without the engine, content as data, and one codebase for the browser, Windows and Android. It is still in development, and the browser build is the one being worked on."
+      ],
+      "highlights": [
+        "The title screen is a camera shot. Press play and the camera swings round behind the runner as the run begins.",
+        "Keyboard, gamepad, mouse and touch, with on-screen hints that follow the devices in use.",
+        "Every screen works from keys or a gamepad, and the run pauses when the window loses focus.",
+        "A crash you can see: a flash, a camera shake, sparks, and a game-over screen that waits for it to play out.",
+        "Sound effects and two music loops that crossfade between the title and the run. The audio is placeholder for now.",
+        "Seeded runs and a saved best score."
+      ],
+      "metrics": [
+        {
+          "label": "Download",
+          "value": "17.2 MB"
+        },
+        {
+          "label": "To the title screen",
+          "value": "3.0 to 3.5 s"
+        },
+        {
+          "label": "CPU time per frame",
+          "value": "about 1 ms"
+        },
+        {
+          "label": "Draw calls in a run",
+          "value": "35 to 38"
+        },
+        {
+          "label": "Automated tests",
+          "value": "361"
+        }
+      ],
+      "architecture": [
+        "Four layers, each its own assembly: App, Features, Shared and Core. A feature cannot reference another feature. They talk through messages and small interfaces, which is how sound, effects and the cameras were added without touching gameplay code.",
+        "Game rules and UI presenters are plain C# with no MonoBehaviour, so they are covered by EditMode tests, including tests that fail if a frame of gameplay allocates. One simulation loop ticks every system in a fixed order. What differs between platforms is data: an input profile and settings per platform family, with no platform checks in gameplay or UI code."
+      ],
+      "learned": [
+        "Measure on the real thing. The score display built no strings and passed its allocation test, and still allocated about 360 bytes on every change once it was on screen, because UI Toolkit allocates whenever a label's text changes. It is now a row of reels that slide, and a test measures whole frames on the live HUD.",
+        "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
       ]
     },
     {
