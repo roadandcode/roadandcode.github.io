@@ -678,10 +678,6 @@ html.js [data-reveal].is-in {
     transform: translateY(-4px);
 }
 
-.card--feature {
-    grid-column: span 8;
-}
-
 .card__media {
     position: relative;
     flex: 1 1 auto;
@@ -774,10 +770,6 @@ html.js [data-reveal].is-in {
     letter-spacing: -.025em;
 }
 
-.card--feature h3 {
-    font-size: clamp(1.6rem, 2.6vw, 2.35rem);
-}
-
 .card__arrow {
     flex: none;
     font-size: 1.2rem;
@@ -847,11 +839,12 @@ html.js [data-reveal].is-in {
     color: var(--text);
 }
 
-.card--ghost:nth-child(3n + 1) {
+/* Every project card is the same size, three to a row. The ghost card takes whatever is left of its row. */
+.card--ghost:nth-child(3n + 2) {
     grid-column: span 8;
 }
 
-.card--ghost:nth-child(3n) {
+.card--ghost:nth-child(3n + 1) {
     grid-column: span 12;
     flex-direction: row;
     align-items: center;
@@ -1614,10 +1607,6 @@ html.debug * {
         grid-column: span 6;
     }
 
-    .card--feature {
-        grid-column: span 12;
-    }
-
     .card--ghost:nth-child(n) {
         grid-column: span 6;
         flex-direction: column;
@@ -1625,7 +1614,7 @@ html.debug * {
         min-height: 240px;
     }
 
-    .card--ghost:nth-child(even) {
+    .card--ghost:nth-child(odd) {
         grid-column: span 12;
         flex-direction: row;
         align-items: center;
@@ -1730,8 +1719,7 @@ html.debug * {
         padding-bottom: 96px;
     }
 
-    .card,
-    .card--feature {
+    .card {
         grid-column: span 12;
     }
 

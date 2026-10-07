@@ -20,7 +20,7 @@ function card(p, index) {
     const skills = (p.skills ?? []).map((id) => `<li class="tag tag--skill">${esc(data.skills[id] ?? id)}</li>`);
 
     return `
-        <a class="card spot${index === 0 ? ' card--feature' : ''}" href="project.html?id=${encodeURIComponent(p.id)}"
+        <a class="card spot" href="project.html?id=${encodeURIComponent(p.id)}"
             data-skills="${esc((p.skills ?? []).join(' '))}" data-reveal style="--d:${Math.min(index, 4) * 0.06}s">
             <div class="card__media">
                 ${media.cover
