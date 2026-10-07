@@ -1,0 +1,225 @@
+{
+  "skills": {
+    "gameplay": "Gameplay",
+    "multiplayer": "Multiplayer",
+    "xr": "XR / VR",
+    "web": "WebGL & performance",
+    "animation": "Animation & cinematics",
+    "ai": "Game AI",
+    "tools": "Editor tools",
+    "backend": "Backend & live services",
+    "services": "Auth, ads & analytics",
+    "devops": "Build & release"
+  },
+  "platforms": {
+    "web": "Web",
+    "android": "Android",
+    "ios": "iOS",
+    "windows": "Windows",
+    "vr": "VR",
+    "editor": "Unity Editor"
+  },
+  "showRoadmap": true,
+  "projects": [
+    {
+      "id": "mealmadness",
+      "title": "Meal Madness",
+      "tagline": "Prepare and deliver orders to the customers waiting in line.",
+      "status": "live",
+      "skills": [
+        "gameplay"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "stack": [
+        "Unity",
+        "C#"
+      ],
+      "media": {
+        "cover": "assets/projects/mealmadness/cover.webp",
+        "preview": "assets/projects/mealmadness/preview.mp4"
+      },
+      "links": {
+        "play": "https://sillybytes.itch.io/mealmadness",
+        "playLabel": "Play on itch.io",
+        "embed": false
+      },
+      "summary": [
+        "A small order-rush game: customers queue up, you put their meals together and get them out before the line backs up."
+      ]
+    },
+    {
+      "id": "multi-build-forge",
+      "title": "Multi Build Forge",
+      "tagline": "One tag builds WebGL, Android and Windows and publishes them to this site.",
+      "status": "building",
+      "skills": [
+        "devops"
+      ],
+      "platforms": [
+        "web",
+        "android",
+        "windows"
+      ]
+    },
+    {
+      "id": "neon-rush",
+      "title": "Neon Rush",
+      "tagline": "Endless runner built to load fast and hold 60 fps in the browser.",
+      "status": "planned",
+      "skills": [
+        "gameplay",
+        "web"
+      ],
+      "platforms": [
+        "web",
+        "windows"
+      ]
+    },
+    {
+      "id": "playhub",
+      "title": "PlayHub",
+      "tagline": "Score-attack game with accounts, leaderboards and cloud saves on a Node.js backend.",
+      "status": "planned",
+      "skills": [
+        "backend",
+        "web"
+      ],
+      "platforms": [
+        "web"
+      ]
+    },
+    {
+      "id": "cine-director",
+      "title": "Cine Director",
+      "tagline": "A 90-second in-engine cinematic cut with Cinemachine and Timeline.",
+      "status": "planned",
+      "skills": [
+        "animation"
+      ],
+      "platforms": [
+        "web",
+        "windows"
+      ]
+    },
+    {
+      "id": "tactica-ai",
+      "title": "Tactica AI",
+      "tagline": "Grid tactics where the enemy runs on a hand-written behavior tree you can inspect.",
+      "status": "planned",
+      "skills": [
+        "ai",
+        "gameplay"
+      ],
+      "platforms": [
+        "web",
+        "windows"
+      ]
+    },
+    {
+      "id": "rig-studio",
+      "title": "Rig Studio",
+      "tagline": "Aim, foot and hand IK plus blend shapes, each one toggleable live.",
+      "status": "planned",
+      "skills": [
+        "animation"
+      ],
+      "platforms": [
+        "web",
+        "windows"
+      ]
+    },
+    {
+      "id": "devkit-pro",
+      "title": "DevKit Pro",
+      "tagline": "The editor tools I reuse across these projects, as an installable package.",
+      "status": "planned",
+      "skills": [
+        "tools"
+      ],
+      "platforms": [
+        "editor"
+      ]
+    },
+    {
+      "id": "arena-sync",
+      "title": "Arena Sync",
+      "tagline": "2-4 player arena on Photon Fusion with server-authoritative, predicted movement.",
+      "status": "planned",
+      "skills": [
+        "multiplayer",
+        "gameplay"
+      ],
+      "platforms": [
+        "web",
+        "windows"
+      ]
+    },
+    {
+      "id": "vr-workshop",
+      "title": "VR Workshop",
+      "tagline": "Pick up tools and use them: grab, haptics and locomotion on PICO and OpenXR.",
+      "status": "planned",
+      "skills": [
+        "xr"
+      ],
+      "platforms": [
+        "vr"
+      ]
+    },
+    {
+      "id": "playhub-mobile",
+      "title": "PlayHub Mobile",
+      "tagline": "Mobile puzzle game with daily challenges and ghost matchmaking on ASP.NET Core.",
+      "status": "planned",
+      "skills": [
+        "backend"
+      ],
+      "platforms": [
+        "android"
+      ]
+    },
+    {
+      "id": "casino-suite",
+      "title": "Casino Suite",
+      "tagline": "Slots, blackjack and plinko sharing one wallet and a seeded, auditable RNG.",
+      "status": "planned",
+      "skills": [
+        "gameplay",
+        "web"
+      ],
+      "platforms": [
+        "web",
+        "android"
+      ]
+    },
+    {
+      "id": "authkit",
+      "title": "AuthKit",
+      "tagline": "Google, Apple, Facebook, email, phone and guest sign-in with account linking.",
+      "status": "planned",
+      "skills": [
+        "services",
+        "backend"
+      ],
+      "platforms": [
+        "android",
+        "web"
+      ]
+    },
+    {
+      "id": "admonetize",
+      "title": "AdMonetize",
+      "tagline": "Rewarded, interstitial and banner ads on LevelPlay and AdMob behind one interface, with consent.",
+      "status": "planned",
+      "skills": [
+        "services"
+      ],
+      "platforms": [
+        "android",
+        "web"
+      ]
+    }
+  ]
+}
