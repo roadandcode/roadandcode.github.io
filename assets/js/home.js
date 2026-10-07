@@ -124,7 +124,7 @@ function renderSkillProof() {
             btn.innerHTML = `${live} ${live === 1 ? 'project' : 'projects'} &rarr;`;
             btn.addEventListener('click', () => {
                 setFilter(id);
-                document.getElementById('work').scrollIntoView();
+                document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
             });
         } else {
             btn.textContent = all.length ? 'On the bench' : '';

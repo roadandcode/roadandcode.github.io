@@ -39,7 +39,7 @@ if (sectionLinks.size) {
             });
         }
     }, { rootMargin: '-45% 0px -50% 0px' });
-    document.querySelectorAll('main > section[id]').forEach((section) => spy.observe(section));
+    document.querySelectorAll('main section[id]').forEach((section) => spy.observe(section));
 }
 
 /* Scroll reveal. Exported so pages can register nodes they render later. */

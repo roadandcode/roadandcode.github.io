@@ -6,25 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ravi Chaudhary | Unity Developer</title>
     <meta name="description"
-        content="Unity developer building games for mobile, WebGL, XR and multiplayer, plus the tools, pipelines and backends behind them. Play the builds in your browser.">
+        content="Unity developer building games for mobile, WebGL, XR and multiplayer, plus the tools, pipelines and backends behind them. Follow a game from concept to console, then play the builds in your browser.">
     <meta name="theme-color" content="#090b11">
     <link rel="canonical" href="https://roadandcode.vercel.app/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roadandcode.vercel.app/">
     <meta property="og:title" content="Ravi Chaudhary | Unity Developer">
     <meta property="og:description"
-        content="Games for mobile, WebGL, XR and multiplayer, and the tools, pipelines and backends behind them.">
+        content="Concept to console: games for mobile, WebGL, XR and multiplayer, and the tools, pipelines and backends behind them.">
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="modulepreload" href="assets/vendor/three.module.min.js">
     <script>document.documentElement.classList.add('js');</script>
 </head>
 
-<body>
+<body class="home">
     <a class="skip" href="#work">Skip to work</a>
+    <canvas class="world" id="world" aria-hidden="true"></canvas>
+    <div class="world-shade" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
 
     <header class="nav" id="nav">
@@ -35,8 +38,8 @@
             </a>
             <nav aria-label="Primary">
                 <ul class="nav__links" id="nav-links">
+                    <li><a href="#journey">Journey</a></li>
                     <li><a href="#work">Work</a></li>
-                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -52,383 +55,487 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero" id="top">
-            <canvas class="hero__gl" id="hero-gl" aria-hidden="true"></canvas>
+    <nav class="jhud" id="jhud" aria-label="Journey stages">
+        <span class="hud jhud__end">Concept</span>
+        <ol class="jhud__track">
+            <li><a href="#ch-concept" data-stage="1"><span>Concept</span></a></li>
+            <li><a href="#ch-prototype" data-stage="2"><span>Prototype</span></a></li>
+            <li><a href="#ch-polish" data-stage="3"><span>Polish</span></a></li>
+            <li><a href="#ch-systems" data-stage="4"><span>Systems</span></a></li>
+            <li><a href="#ch-online" data-stage="5"><span>Online</span></a></li>
+            <li><a href="#ch-ship" data-stage="6"><span>Ship</span></a></li>
+            <li><a href="#ch-console" data-stage="7"><span>Console</span></a></li>
+        </ol>
+        <span class="hud jhud__end">Console</span>
+        <span class="hud jhud__pct" aria-hidden="true"><span id="jhud-pct">0</span>%</span>
+    </nav>
 
+    <main>
+        <section class="hero world-pass" id="top" data-stop>
             <p class="hud hero__hud hero__hud--tr" aria-hidden="true">28.4595&deg; N, 77.0266&deg; E<br>Gurugram,
                 IN</p>
 
-            <div class="wrap hero__in">
+            <div class="wrap hero__in world-pass">
                 <p class="hud hero__eyebrow"><span class="dot"></span>Unity developer &middot; games, tools,
                     backends</p>
-                <h1 class="hero__title">
+                <h1 class="hero__title" id="hero-title">
                     <span class="line"><span>Concept <em>to</em></span></span>
                     <span class="line"><span>console<i>.</i></span></span>
                 </h1>
                 <div class="hero__foot">
                     <p class="hero__lede">I'm Ravi. I build Unity games for mobile, WebGL, XR and multiplayer, and
-                        the tools, pipelines and backends that get them shipped.</p>
+                        the tools, pipelines and backends that get them shipped. Scroll, and follow one from the
+                        first sketch to the screen.</p>
                     <div class="hero__cta">
-                        <a class="btn btn--primary" href="#work">
+                        <a class="btn btn--primary magnet" href="#ch-concept">
                             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                 <path d="M4 2.5v11l9-5.5z" />
-                            </svg>Play the work</a>
-                        <a class="btn" href="#contact">Get in touch</a>
+                            </svg>Start the journey</a>
+                        <a class="btn magnet" href="#work">Skip to the work</a>
                     </div>
                 </div>
             </div>
 
-            <p class="hud hero__hud hero__hud--bl" aria-hidden="true">Scroll</p>
+            <p class="hud hero__hud hero__hud--bl" aria-hidden="true">Scroll to begin</p>
             <p class="hud hero__hud hero__hud--br" aria-hidden="true">This page: <span id="fps">--</span> fps</p>
         </section>
 
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee__track" id="marquee">
-                <span>Unity 6</span><span>C#</span><span>URP</span><span>Photon Fusion</span><span>KCC</span>
-                <span>OpenXR</span><span>PICO SDK</span><span>XR Interaction Toolkit</span><span>WebGL</span>
-                <span>Addressables</span><span>UI Toolkit</span><span>ScriptableObjects</span>
-                <span>Cinemachine</span><span>Timeline</span><span>Animation Rigging</span>
-                <span>Behavior Trees</span><span>Editor Tooling</span><span>Node.js</span><span>.NET</span>
-                <span>REST APIs</span><span>GitHub Actions</span><span>Profiler</span>
-            </div>
-        </div>
+        <section class="journey" id="journey" aria-labelledby="journey-title">
+            <h2 class="sr-only" id="journey-title">Concept to console, in seven stages</h2>
 
-        <section class="section" id="work">
-            <div class="wrap">
-                <div class="sec-head" data-reveal>
-                    <p class="hud">01 / Work</p>
-                    <h2>Playable <em>proof</em>.</h2>
-                    <p class="sec-sub">I'd rather hand you a build than a bullet point. Each project here runs in
-                        the browser or installs on a device, with the source and a write-up next to it.</p>
+            <article class="chapter" id="ch-concept" data-stop data-side="left">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">01</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 01 / 07</span><span>Concept</span></p>
+                        <h3 class="chapter__title" data-scramble>It starts as a <em>sketch</em>.</h3>
+                        <p class="chapter__text">Every game starts as a question on a sticky note. What's the loop?
+                            What should the first ten seconds feel like? I keep each idea small on purpose, so the
+                            build that comes out of it proves one thing well.</p>
+                        <p class="hud chapter__hint"><span class="chapter__key">Click</span> the idea to stir it
+                            up</p>
+                    </div>
                 </div>
+            </article>
 
-                <div class="filters" id="filters" role="group" aria-label="Filter projects by skill" hidden></div>
-                <div class="grid" id="grid" aria-live="polite"></div>
+            <article class="chapter" id="ch-prototype" data-stop data-side="right">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">02</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 02 / 07</span><span>Prototype</span></p>
+                        <h3 class="chapter__title" data-scramble>Grey boxes, <em>fast</em>.</h3>
+                        <p class="chapter__text">Before anything looks good, it has to play well. Controllers, core
+                            loops and game feel go in first, built data-first with ScriptableObjects so designers can
+                            tune without me.</p>
+                        <div class="skills">
+                            <div class="skill" data-skill="gameplay">
+                                <div class="skill__head">
+                                    <h4>Gameplay systems</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">C#</li>
+                                    <li class="tag">Input System</li>
+                                    <li class="tag">ScriptableObjects</li>
+                                    <li class="tag">Addressables</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="hud chapter__hint"><span class="chapter__key">Click</span> the level to make
+                            the player jump</p>
+                    </div>
+                </div>
+            </article>
 
-                <div class="quest" id="roadmap" hidden>
-                    <div class="quest__head" data-reveal>
+            <article class="chapter" id="ch-polish" data-stop data-side="left">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">03</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 03 / 07</span><span>Polish</span></p>
+                        <h3 class="chapter__title" data-scramble>Then it gets a <em>soul</em>.</h3>
+                        <p class="chapter__text">Runtime rigs, IK, blend shapes and procedural layers bring
+                            characters to life, and in-engine cinematics get cut with Cinemachine and Timeline. This
+                            is the pass where a prototype starts to feel like a game.</p>
+                        <div class="skills">
+                            <div class="skill" data-skill="animation">
+                                <div class="skill__head">
+                                    <h4>Animation &amp; cinematics</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">Animation Rigging</li>
+                                    <li class="tag">Mecanim</li>
+                                    <li class="tag">Cinemachine</li>
+                                    <li class="tag">Timeline</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="chapter" id="ch-systems" data-stop data-side="right">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">04</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 04 / 07</span><span>Systems</span></p>
+                        <h3 class="chapter__title" data-scramble>Code that <em>thinks</em>.</h3>
+                        <p class="chapter__text">Behavior trees for NPCs that read the situation, pick a target and
+                            adapt, instead of walking a script. Plus the editor tools that take repetitive work off
+                            the team: custom windows, validators and automation.</p>
+                        <div class="skills">
+                            <div class="skill" data-skill="ai">
+                                <div class="skill__head">
+                                    <h4>Game AI</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">Behavior Trees</li>
+                                    <li class="tag">C#</li>
+                                </ul>
+                            </div>
+                            <div class="skill" data-skill="tools">
+                                <div class="skill__head">
+                                    <h4>Editor tools</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">Editor scripting</li>
+                                    <li class="tag">UI Toolkit</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="hud chapter__hint">The tree is running live. <span
+                                class="chapter__key">Click</span> to make a noise</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="chapter" id="ch-online" data-stop data-side="left">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">05</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 05 / 07</span><span>Online</span></p>
+                        <h3 class="chapter__title" data-scramble>Built to be played <em>together</em>.</h3>
+                        <p class="chapter__text">Synchronised gameplay on Photon, with KCC for networked character
+                            movement that still feels responsive under lag. Behind it, the server side a live game
+                            depends on: REST APIs, accounts, leaderboards and saves.</p>
+                        <div class="skills">
+                            <div class="skill" data-skill="multiplayer">
+                                <div class="skill__head">
+                                    <h4>Multiplayer</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">Photon Fusion</li>
+                                    <li class="tag">PUN</li>
+                                    <li class="tag">KCC</li>
+                                </ul>
+                            </div>
+                            <div class="skill" data-skill="backend">
+                                <div class="skill__head">
+                                    <h4>Backend &amp; live services</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">Node.js</li>
+                                    <li class="tag">.NET</li>
+                                    <li class="tag">REST</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="hud chapter__hint"><span class="chapter__key">Click</span> the globe to send
+                            packets</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="chapter" id="ch-ship" data-stop data-side="right">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">06</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 06 / 07</span><span>Ship</span></p>
+                        <h3 class="chapter__title" data-scramble>One tag, <em>every platform</em>.</h3>
+                        <p class="chapter__text">Automated builds for web, Android and desktop, so shipping a version
+                            is a tag and not an afternoon. Smaller builds, faster loads and steady frame times,
+                            measured with the Profiler rather than guessed at.</p>
+                        <div class="skills">
+                            <div class="skill" data-skill="devops">
+                                <div class="skill__head">
+                                    <h4>Build &amp; release</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">GitHub Actions</li>
+                                    <li class="tag">Git LFS</li>
+                                </ul>
+                            </div>
+                            <div class="skill" data-skill="web">
+                                <div class="skill__head">
+                                    <h4>WebGL &amp; performance</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">WebGL</li>
+                                    <li class="tag">URP</li>
+                                    <li class="tag">Memory Profiler</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="hud chapter__hint"><span class="chapter__key">Click</span> the line to rush a
+                            hotfix</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="chapter" id="ch-console" data-stop data-side="left">
+                <div class="chapter__pin world-pass">
+                    <span class="chapter__num" aria-hidden="true">07</span>
+                    <div class="chapter__card">
+                        <p class="hud chapter__stage"><span>Stage 07 / 07</span><span>Console</span></p>
+                        <h3 class="chapter__title" data-scramble>Press <em>start</em>.</h3>
+                        <p class="chapter__text">Android, iOS, WebGL, XR, Windows and macOS. Hand and controller
+                            interaction on PICO and OpenXR, from fitness games to kiosk-mode enterprise deployments.
+                            The last step is the one that matters: someone picks it up and plays.</p>
+                        <div class="skills">
+                            <div class="skill" data-skill="xr">
+                                <div class="skill__head">
+                                    <h4>XR / VR</h4>
+                                    <button class="skill__proof" type="button" disabled>&mdash;</button>
+                                </div>
+                                <ul class="tags">
+                                    <li class="tag">OpenXR</li>
+                                    <li class="tag">PICO SDK</li>
+                                    <li class="tag">XRI</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="btn btn--primary chapter__cta magnet" href="#work">
+                            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                                <path d="M4 2.5v11l9-5.5z" />
+                            </svg>Play the work</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <div class="after">
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee__track" id="marquee">
+                    <span>Unity 6</span><span>C#</span><span>URP</span><span>Photon Fusion</span><span>KCC</span>
+                    <span>OpenXR</span><span>PICO SDK</span><span>XR Interaction Toolkit</span><span>WebGL</span>
+                    <span>Addressables</span><span>UI Toolkit</span><span>ScriptableObjects</span>
+                    <span>Cinemachine</span><span>Timeline</span><span>Animation Rigging</span>
+                    <span>Behavior Trees</span><span>Editor Tooling</span><span>Node.js</span><span>.NET</span>
+                    <span>REST APIs</span><span>GitHub Actions</span><span>Profiler</span>
+                </div>
+            </div>
+
+            <section class="section" id="work" data-stop="end">
+                <div class="wrap">
+                    <div class="sec-head" data-reveal>
+                        <p class="hud">Level select</p>
+                        <h2>Playable <em>proof</em>.</h2>
+                        <p class="sec-sub">I'd rather hand you a build than a bullet point. Each project here runs in
+                            the browser or installs on a device, with the source and a write-up next to it.</p>
+                    </div>
+
+                    <div class="filters" id="filters" role="group" aria-label="Filter projects by skill" hidden>
+                    </div>
+                    <div class="grid" id="grid" aria-live="polite"></div>
+
+                    <div class="quest" id="roadmap" hidden>
+                        <div class="quest__head" data-reveal>
+                            <div>
+                                <p class="hud">On the bench</p>
+                                <h3>Quest log</h3>
+                            </div>
+                            <p>What I'm building next. Each one is small on purpose and proves one thing well. They
+                                move up to the grid when there's a build to play.</p>
+                        </div>
+                        <ol class="quest__list" id="quest-list"></ol>
+                    </div>
+
+                    <noscript>
+                        <p class="sec-sub">The project list needs JavaScript. You can also find my work at
+                            <a href="https://github.com/roadandcode">github.com/roadandcode</a>.</p>
+                    </noscript>
+                </div>
+            </section>
+
+            <section class="road" id="experience" aria-labelledby="road-title">
+                <div class="road__pin">
+                    <div class="wrap road__head">
                         <div>
-                            <p class="hud">On the bench</p>
-                            <h3>Quest log</h3>
+                            <p class="hud">Experience</p>
+                            <h2 class="road__title" id="road-title">The road <em>so far</em>.</h2>
                         </div>
-                        <p>What I'm building next. Each one is small on purpose and proves one thing well. They
-                            move up to the grid when there's a build to play.</p>
+                        <p class="hud road__hint" aria-hidden="true">Keep scrolling <span>&rarr;</span></p>
                     </div>
-                    <ol class="quest__list" id="quest-list"></ol>
-                </div>
-
-                <noscript>
-                    <p class="sec-sub">The project list needs JavaScript. You can also find my work at
-                        <a href="https://github.com/roadandcode">github.com/roadandcode</a>.</p>
-                </noscript>
-            </div>
-        </section>
-
-        <section class="section" id="skills">
-            <div class="wrap">
-                <div class="sec-head" data-reveal>
-                    <p class="hud">02 / Skills</p>
-                    <h2>What I do, and where to <em>see it</em>.</h2>
-                </div>
-
-                <div class="skills">
-                    <article class="skill spot" data-skill="gameplay" data-reveal>
-                        <p class="hud">A1</p>
-                        <h3>Gameplay systems</h3>
-                        <p>Core loops, controllers and game feel, built data-first with ScriptableObjects so
-                            designers can tune without me.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">C#</li>
-                                <li class="tag">Input System</li>
-                                <li class="tag">Addressables</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="multiplayer" data-reveal style="--d:.06s">
-                        <p class="hud">A2</p>
-                        <h3>Multiplayer</h3>
-                        <p>Synchronised gameplay on Photon, with KCC for networked character movement that still
-                            feels responsive under lag.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">Photon Fusion</li>
-                                <li class="tag">PUN</li>
-                                <li class="tag">KCC</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="xr" data-reveal style="--d:.12s">
-                        <p class="hud">A3</p>
-                        <h3>XR / VR</h3>
-                        <p>Hand and controller interaction on PICO and OpenXR, from fitness games to kiosk-mode
-                            enterprise deployments.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">OpenXR</li>
-                                <li class="tag">PICO SDK</li>
-                                <li class="tag">XRI</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="web" data-reveal>
-                        <p class="hud">B1</p>
-                        <h3>WebGL &amp; performance</h3>
-                        <p>Smaller builds, faster loads and steady frame times, measured with the Profiler rather
-                            than guessed at.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">WebGL</li>
-                                <li class="tag">URP</li>
-                                <li class="tag">Memory Profiler</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="animation" data-reveal style="--d:.06s">
-                        <p class="hud">B2</p>
-                        <h3>Animation &amp; cinematics</h3>
-                        <p>Runtime rigs, IK, blend shapes and procedural layers, plus in-engine cinematics cut with
-                            Cinemachine and Timeline.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">Animation Rigging</li>
-                                <li class="tag">Mecanim</li>
-                                <li class="tag">Timeline</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="ai" data-reveal style="--d:.12s">
-                        <p class="hud">B3</p>
-                        <h3>Game AI</h3>
-                        <p>Behavior trees for NPCs that read the situation, pick a target and adapt, instead of
-                            walking a script.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">Behavior Trees</li>
-                                <li class="tag">C#</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="tools" data-reveal>
-                        <p class="hud">C1</p>
-                        <h3>Editor tools</h3>
-                        <p>Custom windows, validators and automation that take the repetitive work off designers
-                            and other developers.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">Editor scripting</li>
-                                <li class="tag">UI Toolkit</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="backend" data-reveal style="--d:.06s">
-                        <p class="hud">C2</p>
-                        <h3>Backend &amp; live services</h3>
-                        <p>The server side of a game: REST APIs, accounts, leaderboards and saves, and a client
-                            that talks to them cleanly.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">Node.js</li>
-                                <li class="tag">.NET</li>
-                                <li class="tag">REST</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-
-                    <article class="skill spot" data-skill="devops" data-reveal style="--d:.12s">
-                        <p class="hud">C3</p>
-                        <h3>Build &amp; release</h3>
-                        <p>Automated builds for web, Android and desktop, so shipping a version is a tag and not
-                            an afternoon.</p>
-                        <div class="skill__foot">
-                            <ul class="tags">
-                                <li class="tag">GitHub Actions</li>
-                                <li class="tag">Git LFS</li>
-                            </ul>
-                            <button class="skill__proof" type="button" disabled>&mdash;</button>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="experience">
-            <div class="wrap">
-                <div class="sec-head" data-reveal>
-                    <p class="hud">03 / Experience</p>
-                    <h2>Where I've <em>shipped</em>.</h2>
-                </div>
-
-                <ol class="xp">
-                    <li class="xp__row" data-reveal>
-                        <p class="hud xp__when">Jun 2025 &ndash; Now</p>
-                        <div class="xp__role">
-                            <h3>Meta Design Solutions</h3>
-                            <p>Game Developer &middot; Gurugram</p>
-                        </div>
-                        <ul class="xp__what">
-                            <li>Interactive learning apps in Unity for PICO VR and WebGL.</li>
-                            <li>Editor tools that automate content creation and validation.</li>
-                            <li>WebGL work on load time, memory and frame rate, plus automated build workflows.</li>
-                            <li>Led R&amp;D on VR kiosk mode for enterprise deployments. Star of the Month award.</li>
-                        </ul>
-                    </li>
-                    <li class="xp__row" data-reveal>
-                        <p class="hud xp__when">Sep 2024 &ndash; Jun 2025</p>
-                        <div class="xp__role">
-                            <h3>Ediiie</h3>
-                            <p>Game Developer &middot; Gurugram</p>
-                        </div>
-                        <ul class="xp__what">
-                            <li>Multiplayer gameplay systems on Photon with synchronised networked play.</li>
-                            <li>Photon KCC for smooth, accurate character movement across clients.</li>
-                            <li>Behavior-tree AI for NPCs that adapt to the player.</li>
-                        </ul>
-                    </li>
-                    <li class="xp__row" data-reveal>
-                        <p class="hud xp__when">Dec 2023 &ndash; Mar 2024</p>
-                        <div class="xp__role">
-                            <h3>Animo</h3>
-                            <p>Game Developer &middot; Bangalore</p>
-                        </div>
-                        <ul class="xp__what">
-                            <li>Led custom animation work for MetaHuman characters with Animation Rigging.</li>
-                            <li>Tightened the Unity to Node.js link to cut latency in real-time animation.</li>
-                            <li>Event-driven architecture on Unity Events and ScriptableObjects.</li>
-                        </ul>
-                    </li>
-                    <li class="xp__row" data-reveal>
-                        <p class="hud xp__when">Jul 2023 &ndash; Dec 2023</p>
-                        <div class="xp__role">
-                            <h3>Magnimus Systems</h3>
-                            <p>Game Developer &middot; Bangalore</p>
-                        </div>
-                        <ul class="xp__what">
-                            <li>Built an XR fitness app from scratch, turning exercise routines into games.</li>
-                            <li>Editor tools and scripts that sped up the team's workflow.</li>
-                            <li>In-game cinematics with Cinemachine and Timeline.</li>
-                        </ul>
-                    </li>
-                    <li class="xp__row" data-reveal>
-                        <p class="hud xp__when">Apr 2022 &ndash; Jun 2023</p>
-                        <div class="xp__role">
-                            <h3>Blueberry Fun</h3>
-                            <p>Associate Game Developer &middot; Jaipur</p>
-                        </div>
-                        <ul class="xp__what">
-                            <li>Mobile games from scratch, released on Android, iOS and WebGL.</li>
-                            <li>Worked on a Unity hub app that downloads, launches and manages 100+ games.</li>
-                            <li>REST API integration for user data and backend sync.</li>
-                        </ul>
-                    </li>
-                    <li class="xp__row" data-reveal>
-                        <p class="hud xp__when">Jul 2020 &ndash; Dec 2020</p>
-                        <div class="xp__role">
-                            <h3>Nine Hertz</h3>
-                            <p>Game Developer Intern &middot; Jaipur</p>
-                        </div>
-                        <ul class="xp__what">
-                            <li>2D platformers in Unity: player controls, mechanics and bug fixing.</li>
-                        </ul>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <section class="section" id="about">
-            <div class="wrap">
-                <div class="sec-head" data-reveal>
-                    <p class="hud">04 / About</p>
-                    <h2>The person behind the <em>builds</em>.</h2>
-                </div>
-
-                <div class="about">
-                    <figure class="about__photo" data-reveal>
-                        <img src="assets/img/avatar.webp" alt="Portrait of Ravi Chaudhary" width="480" height="480"
-                            loading="lazy">
-                        <figcaption class="hud">Player 1</figcaption>
-                    </figure>
-                    <div class="about__text" data-reveal style="--d:.08s">
-                        <p>I'm a Unity developer based in Gurugram. I started with 2D platformers in 2020 and have
-                            since worked on mobile games, a hub app that hosts over a hundred of them, XR fitness
-                            and training apps, and multiplayer on Photon.</p>
-                        <p>Most of what I do sits where the game meets everything around it: editor tools that
-                            remove busywork, WebGL builds that load quickly, pipelines that ship without
-                            hand-holding. Lately I've been pushing further into the server side, the APIs, auth
-                            and services a live game depends on.</p>
-                        <dl class="facts">
-                            <div>
-                                <dt class="hud">Now</dt>
-                                <dd>Game Developer, Meta Design Solutions</dd>
-                            </div>
-                            <div>
-                                <dt class="hud">Building in Unity since</dt>
-                                <dd>2020</dd>
-                            </div>
-                            <div>
-                                <dt class="hud">Platforms</dt>
-                                <dd>Android, iOS, WebGL, XR, Windows, macOS</dd>
-                            </div>
-                            <div>
-                                <dt class="hud">Education</dt>
-                                <dd>BCA, Amity University</dd>
-                            </div>
-                        </dl>
+                    <div class="road__view">
+                        <ol class="road__track" id="road-track">
+                            <li class="lvl">
+                                <p class="hud lvl__no"><span>Lvl 01</span><span>2020</span></p>
+                                <h3>Nine Hertz</h3>
+                                <p class="lvl__role">Game Developer Intern &middot; Jaipur</p>
+                                <p class="hud lvl__when">Jul 2020 &ndash; Dec 2020</p>
+                                <ul class="lvl__what">
+                                    <li>2D platformers in Unity: player controls, mechanics and bug fixing.</li>
+                                </ul>
+                            </li>
+                            <li class="lvl">
+                                <p class="hud lvl__no"><span>Lvl 02</span><span>2022</span></p>
+                                <h3>Blueberry Fun</h3>
+                                <p class="lvl__role">Associate Game Developer &middot; Jaipur</p>
+                                <p class="hud lvl__when">Apr 2022 &ndash; Jun 2023</p>
+                                <ul class="lvl__what">
+                                    <li>Mobile games from scratch, released on Android, iOS and WebGL.</li>
+                                    <li>Worked on a Unity hub app that downloads, launches and manages 100+ games.</li>
+                                    <li>REST API integration for user data and backend sync.</li>
+                                </ul>
+                            </li>
+                            <li class="lvl">
+                                <p class="hud lvl__no"><span>Lvl 03</span><span>2023</span></p>
+                                <h3>Magnimus Systems</h3>
+                                <p class="lvl__role">Game Developer &middot; Bangalore</p>
+                                <p class="hud lvl__when">Jul 2023 &ndash; Dec 2023</p>
+                                <ul class="lvl__what">
+                                    <li>Built an XR fitness app from scratch, turning exercise routines into games.</li>
+                                    <li>Editor tools and scripts that sped up the team's workflow.</li>
+                                    <li>In-game cinematics with Cinemachine and Timeline.</li>
+                                </ul>
+                            </li>
+                            <li class="lvl">
+                                <p class="hud lvl__no"><span>Lvl 04</span><span>2023</span></p>
+                                <h3>Animo</h3>
+                                <p class="lvl__role">Game Developer &middot; Bangalore</p>
+                                <p class="hud lvl__when">Dec 2023 &ndash; Mar 2024</p>
+                                <ul class="lvl__what">
+                                    <li>Led custom animation work for MetaHuman characters with Animation Rigging.</li>
+                                    <li>Tightened the Unity to Node.js link to cut latency in real-time animation.</li>
+                                    <li>Event-driven architecture on Unity Events and ScriptableObjects.</li>
+                                </ul>
+                            </li>
+                            <li class="lvl">
+                                <p class="hud lvl__no"><span>Lvl 05</span><span>2024</span></p>
+                                <h3>Ediiie</h3>
+                                <p class="lvl__role">Game Developer &middot; Gurugram</p>
+                                <p class="hud lvl__when">Sep 2024 &ndash; Jun 2025</p>
+                                <ul class="lvl__what">
+                                    <li>Multiplayer gameplay systems on Photon with synchronised networked play.</li>
+                                    <li>Photon KCC for smooth, accurate character movement across clients.</li>
+                                    <li>Behavior-tree AI for NPCs that adapt to the player.</li>
+                                </ul>
+                            </li>
+                            <li class="lvl lvl--now">
+                                <p class="hud lvl__no"><span>Lvl 06</span><span>Now</span></p>
+                                <h3>Meta Design Solutions</h3>
+                                <p class="lvl__role">Game Developer &middot; Gurugram</p>
+                                <p class="hud lvl__when">Jun 2025 &ndash; Now</p>
+                                <ul class="lvl__what">
+                                    <li>Interactive learning apps in Unity for PICO VR and WebGL.</li>
+                                    <li>Editor tools that automate content creation and validation.</li>
+                                    <li>WebGL work on load time, memory and frame rate, plus automated build workflows.
+                                    </li>
+                                    <li>Led R&amp;D on VR kiosk mode for enterprise deployments. Star of the Month
+                                        award.</li>
+                                </ul>
+                            </li>
+                            <li class="lvl lvl--next">
+                                <p class="hud lvl__no"><span>Lvl 07</span><span>Next</span></p>
+                                <h3>Your studio?</h3>
+                                <p class="lvl__role">The next level is unlocked by a message.</p>
+                                <a class="btn btn--primary" href="#contact">Start a conversation</a>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="road__line" aria-hidden="true"><span class="road__fill" id="road-fill"></span>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section contact" id="contact">
-            <div class="wrap">
-                <p class="hud" data-reveal>05 / Contact</p>
-                <h2 class="display" data-reveal style="margin-top:1.1rem">Got a game that needs
-                    <em>shipping</em>?</h2>
-                <div class="contact__row" data-reveal>
-                    <div>
-                        <a class="mail" id="mail" href="mailto:rvch752@gmail.com">rvch752@gmail.com</a>
-                        <p class="hud mail__hint" id="mail-hint">Click to copy</p>
+            <section class="section" id="about">
+                <div class="wrap">
+                    <div class="sec-head" data-reveal>
+                        <p class="hud">About</p>
+                        <h2>The person behind the <em>builds</em>.</h2>
                     </div>
-                    <ul class="socials">
-                        <li><a href="https://www.linkedin.com/in/roadandcode" target="_blank"
-                                rel="noopener">LinkedIn</a></li>
-                        <li><a href="https://github.com/roadandcode" target="_blank" rel="noopener">GitHub</a></li>
-                        <li><a href="https://twitter.com/sillybytes" target="_blank" rel="noopener">X</a></li>
-                        <li><a href="https://instagram.com/roadandcode" target="_blank"
-                                rel="noopener">Instagram</a></li>
-                        <li><a href="https://wa.me/+919258845907" target="_blank" rel="noopener">WhatsApp</a></li>
-                    </ul>
+
+                    <div class="about">
+                        <figure class="about__photo tilt" data-reveal>
+                            <img src="assets/img/avatar.webp" alt="Portrait of Ravi Chaudhary" width="480"
+                                height="480" loading="lazy">
+                            <figcaption class="hud">Player 1</figcaption>
+                        </figure>
+                        <div class="about__text" data-reveal style="--d:.08s">
+                            <p>I'm a Unity developer based in Gurugram. I started with 2D platformers in 2020 and have
+                                since worked on mobile games, a hub app that hosts over a hundred of them, XR fitness
+                                and training apps, and multiplayer on Photon.</p>
+                            <p>Most of what I do sits where the game meets everything around it: editor tools that
+                                remove busywork, WebGL builds that load quickly, pipelines that ship without
+                                hand-holding. Lately I've been pushing further into the server side, the APIs, auth
+                                and services a live game depends on.</p>
+                            <dl class="facts">
+                                <div>
+                                    <dt class="hud">Now</dt>
+                                    <dd>Game Developer, Meta Design Solutions</dd>
+                                </div>
+                                <div>
+                                    <dt class="hud">Building in Unity since</dt>
+                                    <dd>2020</dd>
+                                </div>
+                                <div>
+                                    <dt class="hud">Platforms</dt>
+                                    <dd>Android, iOS, WebGL, XR, Windows, macOS</dd>
+                                </div>
+                                <div>
+                                    <dt class="hud">Education</dt>
+                                    <dd>BCA, Amity University</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="section contact" id="contact">
+                <div class="wrap">
+                    <p class="hud" data-reveal>Contact &middot; Player 2, press start</p>
+                    <h2 class="display" data-reveal style="margin-top:1.1rem">Got a game that needs
+                        <em>shipping</em>?</h2>
+                    <div class="contact__row" data-reveal>
+                        <div>
+                            <a class="mail" id="mail" href="mailto:rvch752@gmail.com">rvch752@gmail.com</a>
+                            <p class="hud mail__hint" id="mail-hint">Click to copy</p>
+                        </div>
+                        <ul class="socials">
+                            <li><a href="https://www.linkedin.com/in/roadandcode" target="_blank"
+                                    rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://github.com/roadandcode" target="_blank" rel="noopener">GitHub</a>
+                            </li>
+                            <li><a href="https://twitter.com/sillybytes" target="_blank" rel="noopener">X</a></li>
+                            <li><a href="https://instagram.com/roadandcode" target="_blank"
+                                    rel="noopener">Instagram</a></li>
+                            <li><a href="https://wa.me/+919258845907" target="_blank" rel="noopener">WhatsApp</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </main>
 
     <footer class="footer">
         <div class="wrap footer__in hud">
             <p>&copy; <span id="year">2026</span> Ravi Chaudhary</p>
-            <p>Hand-written HTML, CSS and one fragment shader. Press <kbd>`</kbd> for debug draw.</p>
+            <p>Hand-written HTML, CSS and a Three.js world. Press <kbd>`</kbd> for debug draw.</p>
         </div>
     </footer>
 
     <script type="module" src="assets/js/site.js"></script>
-    <script type="module" src="assets/js/hero.js"></script>
+    <script type="module" src="assets/js/journey.js"></script>
     <script type="module" src="assets/js/home.js"></script>
+    <script type="module" src="assets/js/world/main.js"></script>
 </body>
 
 </html>

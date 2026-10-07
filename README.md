@@ -1,14 +1,36 @@
 # roadandcode.vercel.app
 
-My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no framework. The only build step collects the playable WebGL builds.
+My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no framework, plus a vendored copy of Three.js for the 3D home page. The only build step collects the playable WebGL builds.
 
 ## How it's put together
 
-- `index.html` is the home page. Hero, skills, experience, about and contact are written straight into the HTML.
+- `index.html` is the home page: the hero, the seven-stage journey (Concept, Prototype, Polish, Systems, Online, Ship, Console), the work grid, the experience road, about and contact. All the copy is written straight into the HTML, so the page reads fine without JavaScript or WebGL.
 - `project.html` is one template for every project page, opened as `project.html?id=<id>`.
-- `data/projects.json` holds every project. The grid, the filters, the quest log and the project pages are all rendered from it.
-- `assets/js/hero.js` is the contour-map shader behind the hero (WebGL2, with a CSS gradient as the fallback).
+- `data/projects.json` holds every project. The grid, the filters, the quest log, the project pages and the footage on the 3D console's screen are all rendered from it.
+- `assets/js/world/` is the 3D world behind the home page (see below).
+- `assets/js/scroll.js` turns the scroll position into the journey position that both the world and the page effects read.
+- `assets/js/journey.js` handles the HTML side of the journey: card fades, the concept-to-console progress bar, the sideways experience road, scrambled headings, tilt and magnetic buttons.
 - `tools/build.mjs` assembles `dist/` for deployment: the pages above plus each project's WebGL build under `play/<id>/`.
+
+## The world
+
+Scrolling the home page flies a camera down a road across a contour map, from an idea at one end to a handheld console at the other. Every `[data-stop]` element on the page (the hero, the seven chapters and the work section) is a camera keyframe.
+
+- `world/layout.js` has the road, where each station sits, and the camera keyframe for each stop. Change the framing here.
+- `world/stations/` has one file per station. Each returns a group and an `update(time, dt, u)`, where `u` is the camera's position along the keyframes, so a station can animate with the scroll (the greybox dropping in, the paint pass, the console powering on).
+- `world/terrain.js` is the contour-map ground and the road, which lights up behind you.
+- `world/post.js` is the bloom pass. Colours brighter than 1.0 glow.
+- `world/main.js` ties it together: renderer, camera rig, picking for the clickable stations, and quality tiers. Phones and low-core machines skip bloom; if the frame rate drops it renders fewer pixels, then turns bloom off.
+
+With `prefers-reduced-motion` the camera cuts between stops instead of flying and nothing idles. Without WebGL2 the canvas never appears and the page keeps its CSS background.
+
+`assets/vendor/three.module.min.js` is Three.js r186, minified into one file (MIT, licence alongside). To update it:
+
+```bash
+npm pack three@<version> && tar -xzf three-<version>.tgz
+echo 'export * from "./package/build/three.module.js";' > entry.js
+npx esbuild entry.js --bundle --format=esm --minify --legal-comments=none --outfile=three.module.min.js
+```
 
 ## Adding a project
 
