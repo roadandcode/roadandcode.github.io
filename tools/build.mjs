@@ -1,9 +1,10 @@
 // Assembles the deployable site in dist/: the static pages plus every WebGL build
 // listed in data/projects.json. Vercel runs this as the build command.
 //
-// Builds are pulled from each game repo's GitHub Release (webgl.tar.gz), so no
-// build binaries live in this repo. A folder at play/<id>/ wins over the release,
-// which is how I test a build locally before tagging it.
+// A build comes from one of three places, tried in this order:
+//   play/<id>/      a local copy, which is how I test a build before publishing it (gitignored)
+//   build.path      a copy committed to this repo, for a project whose own repo is not public
+//   build.repo      webgl.tar.gz from the latest GitHub Release of the project's repo
 
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -47,6 +48,10 @@ for (const project of playable) {
     if (existsSync(local)) {
         await cp(local, dest, { recursive: true });
         console.log(`${project.id}: copied local build from ${local}/`);
+    } else if (project.build.path) {
+        if (!existsSync(project.build.path)) throw new Error(`${project.id}: nothing at ${resolve(project.build.path)}`);
+        await cp(project.build.path, dest, { recursive: true });
+        console.log(`${project.id}: copied committed build from ${project.build.path}/`);
     } else {
         const size = await fetchBuild(project, dest);
         console.log(`${project.id}: fetched ${(size / 1048576).toFixed(1)} MB from ${project.build.repo}`);

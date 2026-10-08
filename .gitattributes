@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Unity web builds are committed exactly as the editor wrote them.
+builds/** -text

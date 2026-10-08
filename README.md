@@ -9,6 +9,7 @@ My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no fram
 - `data/projects.json` holds every project. The grid, the filters, the quest log and the project pages are all rendered from it.
 - `assets/js/hero.js` is the contour-map shader behind the hero (WebGL2, with a CSS gradient as the fallback).
 - `tools/build.mjs` assembles `dist/` for deployment: the pages above plus each project's WebGL build under `play/<id>/`.
+- `builds/<id>/` holds the WebGL build of a project whose own repo is not public.
 
 ## Adding a project
 
@@ -27,7 +28,7 @@ My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no fram
 | `stack`, `role`, `year` | Shown in the side panel |
 | `media.cover`, `media.preview`, `media.shots[]` | Paths under `assets/projects/<id>/` |
 | `media.trailer` | `{ "youtube": "<video id>" }` or `{ "src": "<mp4 path>" }` |
-| `build` | `{ "repo": "roadandcode/<repo>" }` for a WebGL build hosted on this site. Optional `tag` pins a release |
+| `build` | A WebGL build hosted on this site. `{ "repo": "roadandcode/<repo>" }` takes it from that repo's latest release (optional `tag` pins one); `{ "path": "builds/<id>" }` takes a copy committed here |
 | `links.play` | Only for builds hosted elsewhere (itch.io and so on). Embedded in the page unless `links.embed` is `false` |
 | `downloads[]` | `{ "label", "url", "size" }` for APKs and desktop zips, normally GitHub Release assets |
 | `links.source`, `links.backend`, `links.api` | Repo and API docs links |
@@ -35,7 +36,11 @@ My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no fram
 
 ## Playable builds
 
-Every playable build is served from this site at `/play/<id>/`, but none of them are committed here. Each game repo attaches a `webgl.tar.gz` to its GitHub Release. When Vercel deploys, `tools/build.mjs` downloads the latest one for every live project that has a `build` entry and unpacks it into `dist/play/<id>/`. A game's release workflow finishes by calling this project's deploy hook, so a new tag over there shows up here without anyone touching this repo.
+Every playable build is served from this site at `/play/<id>/`.
+
+A project with a public repo keeps its build out of this one. The game repo attaches a `webgl.tar.gz` to its GitHub Release. When Vercel deploys, `tools/build.mjs` downloads the latest one for every live project whose `build` entry names a `repo` and unpacks it into `dist/play/<id>/`. A game's release workflow finishes by calling this project's deploy hook, so a new tag over there shows up here without anyone touching this repo.
+
+A project whose repo is not public has nowhere Vercel can download from, so its build is committed here under `builds/<id>/` and its `build` entry gives that `path`. Updating it means replacing the folder and pushing.
 
 If a download fails the deploy fails, and Vercel keeps serving the previous version.
 
