@@ -145,6 +145,89 @@
       ]
     },
     {
+      "id": "cine-director",
+      "title": "Cine Director",
+      "tagline": "First Light: a 78-second film shot with Cinemachine and cut on one Timeline, with notes on every shot.",
+      "status": "live",
+      "year": "2026",
+      "role": "Solo: direction, code, set, sound, build",
+      "skills": [
+        "animation",
+        "web"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "stack": [
+        "Unity 6",
+        "URP",
+        "Cinemachine 3",
+        "Timeline",
+        "C#",
+        "VContainer",
+        "UI Toolkit",
+        "Input System",
+        "Addressables"
+      ],
+      "media": {
+        "cover": "assets/projects/cine-director/first-light.jpg",
+        "shots": [
+          "assets/projects/cine-director/title.jpg",
+          "assets/projects/cine-director/power.jpg",
+          "assets/projects/cine-director/bridge.jpg",
+          "assets/projects/cine-director/dolly-zoom.jpg",
+          "assets/projects/cine-director/first-light.jpg",
+          "assets/projects/cine-director/paused.jpg"
+        ]
+      },
+      "build": {
+        "path": "builds/cine-director"
+      },
+      "summary": [
+        "First Light is a short film made entirely inside Unity. A maintenance robot wakes in a dead station, walks a corridor on emergency lighting, throws the lever that brings the power back, crosses a bridge in the open air and watches a beacon light as the sun comes up.",
+        "I made it to show camera work and sequencing the way I would do them in a shipped game: not a baked video, but data on a timeline, played by a small app you can pause, skip through by chapter and read. A bar above the picture names each shot, the technique behind it and the lens, as the camera goes live."
+      ],
+      "highlights": [
+        "Twelve shots, twelve techniques: a dolly on a spline, a rack focus, a tracking shot, hand-held, over the shoulder, an insert, a cut on a signal, a static frame, an orbit, a crane, a dolly zoom and a pull-back.",
+        "Director's notes in the top bar, which you can switch off with N.",
+        "Five chapters. Skip between them or jump to any one from the pause panel; picture, lighting and sound are right on the next frame, forwards or backwards.",
+        "A robot that walks without a single animation clip: the gait is driven by distance travelled and the legs are solved with IK.",
+        "A score that follows the chapters and ten effects, all synthesised for the film and kept in step with the picture.",
+        "Keyboard, mouse or gamepad. Leaving the tab pauses the film."
+      ],
+      "metrics": [
+        {
+          "label": "Download",
+          "value": "20.1 MB"
+        },
+        {
+          "label": "To the title card",
+          "value": "1.7 s"
+        },
+        {
+          "label": "CPU time per frame",
+          "value": "1.5 to 3 ms"
+        },
+        {
+          "label": "Draw calls",
+          "value": "158 to 523"
+        },
+        {
+          "label": "Automated tests",
+          "value": "202"
+        }
+      ],
+      "architecture": [
+        "One rule shaped the project: everything you see or hear is worked out from the film's current time, and nothing remembers the frame before. The walker, the lamps, the doors, the dawn, the cameras and the sound are each a small custom Timeline track over a component that applies what it is given. That is why a jump to any chapter needs no reset code.",
+        "Around the film is the same structure as my other projects: App, Features, Shared and a core package, each its own assembly, wired by dependency injection. The transport, the screens and the camera notes are plain C# classes covered by EditMode tests, and eight PlayMode tests run the whole app from its first scene."
+      ],
+      "learned": [
+        "Look at the picture where it will be watched. My editor screenshots were rendered into an 8-bit target, which clamps the image before bloom runs, so bloom looked absent and I kept turning it up. The first browser build showed the real thing: a halo round every lamp.",
+        "A set made of 249 boxes cost 1,226 draw calls on the title card alone. Merging everything that never moves brought that to 461, in pieces kept small enough that each one is still lit by the lamps nearest to it.",
+        "The numbers above come from a fast desktop and a local server. They show what the film costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
+      ]
+    },
+    {
       "id": "playhub",
       "title": "PlayHub",
       "tagline": "Score-attack game with accounts, leaderboards and cloud saves on a Node.js backend.",
@@ -155,19 +238,6 @@
       ],
       "platforms": [
         "web"
-      ]
-    },
-    {
-      "id": "cine-director",
-      "title": "Cine Director",
-      "tagline": "A 90-second in-engine cinematic cut with Cinemachine and Timeline.",
-      "status": "planned",
-      "skills": [
-        "animation"
-      ],
-      "platforms": [
-        "web",
-        "windows"
       ]
     },
     {
