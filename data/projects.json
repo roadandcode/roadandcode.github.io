@@ -228,6 +228,91 @@
       ]
     },
     {
+      "id": "tactica-ai",
+      "title": "Tactica AI",
+      "tagline": "Grid tactics against a hand-written behaviour tree that shows its reasoning for every move.",
+      "status": "live",
+      "year": "2026",
+      "role": "Solo: design, code, AI, models, sound, build",
+      "skills": [
+        "ai",
+        "gameplay",
+        "web"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "stack": [
+        "Unity 6",
+        "URP",
+        "C#",
+        "VContainer",
+        "UI Toolkit",
+        "Input System",
+        "Addressables",
+        "Unity Test Framework"
+      ],
+      "media": {
+        "cover": "assets/projects/tactica-ai/ai-decision.jpg",
+        "shots": [
+          "assets/projects/tactica-ai/your-turn.jpg",
+          "assets/projects/tactica-ai/ai-decision.jpg",
+          "assets/projects/tactica-ai/danger-map.jpg",
+          "assets/projects/tactica-ai/watching.jpg",
+          "assets/projects/tactica-ai/result.jpg",
+          "assets/projects/tactica-ai/title.jpg"
+        ]
+      },
+      "build": {
+        "path": "builds/tactica-ai"
+      },
+      "summary": [
+        "A small turn-based tactics game: three units a side on a six by six board with walls and cover. You can play Blue against the AI, or let it play both sides and watch.",
+        "The point of it is the panel on the right. Game AI is easy to fake, so I built an opponent you can check: every time one of its units decides, the panel lays out the whole decision. Each node of its behaviour tree with yes, no or never asked and the reason, then the options it weighed with the score written out term by term. It is the record the tree writes while it runs, not a description made up afterwards."
+      ],
+      "highlights": [
+        "A behaviour tree I wrote by hand, with scoring at its leaves: the tree picks what kind of thing to do (finish a kill, fall back, strike, close in) and a weighted sum over the facts picks exactly where and to whom.",
+        "Three unit classes with three different trees: a brawler, a skirmisher that shoots from the safest spot it can find, and a medic that heals whoever is worst off.",
+        "A decision inspector with history. Step back through every decision of the match while it carries on.",
+        "A danger map you can switch on: how much the enemy could do to each cell next turn. It is the AI's own map, worked out for the unit about to move.",
+        "No dice anywhere. The same position always gives the same decision, and a match between the two AIs plays out move for move the same in the editor and in the browser.",
+        "Keyboard or mouse, with a layout for wide screens and one for a screen held upright."
+      ],
+      "metrics": [
+        {
+          "label": "Download",
+          "value": "16.8 MB"
+        },
+        {
+          "label": "To the title",
+          "value": "1.6 s"
+        },
+        {
+          "label": "CPU time per frame",
+          "value": "1.3 ms"
+        },
+        {
+          "label": "Draw calls",
+          "value": "85 to 137"
+        },
+        {
+          "label": "Automated tests",
+          "value": "232"
+        }
+      ],
+      "architecture": [
+        "The rules are a library with no engine in it: board, movement, line of fire, combat and turns, as plain C# that tests can play without starting Unity. There is one way to change a battle, which is to hand it an action and have the rules check it. A click and an AI decision go through the same call, so the AI cannot do anything a player could not.",
+        "Trees, unit classes and arenas are assets. A tree is a ScriptableObject with its nodes inside it; a new kind of unit is an asset with numbers, a model and a tree; an arena is six strings. Around that is the same structure as my other projects: App, Features, Shared and a core package, each its own assembly, wired by dependency injection.",
+        "What you see lags what is true, on purpose. The rules settle an action at once and the board plays it out from a queue, one step at a time. The AI waits for the board before its next step, which is why you can watch it think one unit at a time."
+      ],
+      "learned": [
+        "Tests that put each shipped tree into a position drawn for one behaviour found a real flaw in the AI. A unit judged how dangerous a cell was with itself still standing where it was, so in a corridor it fell back one cell to a spot the enemy could still reach. With that fixed, a match between the two AIs went from five turns to ten.",
+        "The first browser build made about 400 draw calls for six units. Every model was ten primitives, each drawn for colour, again for ambient occlusion and again for four shadow cascades. Merging each model into one mesh per material and cutting the render pipeline down to what a small board needs brought a match to between 85 and 137.",
+        "The first match began with a frame of nearly a second, because everything was drawn for the first time on the frame after Play was pressed. The board now draws itself once while the app starts, behind a cover, and the first match's longest frame is 12.5 ms.",
+        "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
+      ]
+    },
+    {
       "id": "playhub",
       "title": "PlayHub",
       "tagline": "Score-attack game with accounts, leaderboards and cloud saves on a Node.js backend.",
@@ -238,20 +323,6 @@
       ],
       "platforms": [
         "web"
-      ]
-    },
-    {
-      "id": "tactica-ai",
-      "title": "Tactica AI",
-      "tagline": "Grid tactics where the enemy runs on a hand-written behavior tree you can inspect.",
-      "status": "planned",
-      "skills": [
-        "ai",
-        "gameplay"
-      ],
-      "platforms": [
-        "web",
-        "windows"
       ]
     },
     {

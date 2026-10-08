@@ -1,0 +1,139 @@
+<linker>
+  <assembly fullname="RoadAndCode.TacticaAi.Ai, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Ai.Composition.AiInstaller" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.AllyWoundedAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.BehaviourTreeAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.ChoiceAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.HealthAtMostAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.InDangerAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.SelectorAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Data.SequenceAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Logic.AiPacing" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.TacticaAi.Ai.Logic.Priorities" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.App, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.App.Composition.MatchLifetimeScope" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.Battle, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Battle.Composition.BattleInstaller" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.Board, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Board.Composition.BoardInstaller" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Data.BoardTheme" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Presentation.BoardCameraView" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Presentation.BoardStageView" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Presentation.OverlayView" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Presentation.UnitView" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Logic.BoardTimings" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Logic.CameraFraming" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.TacticaAi.Board.Logic.OverlayPalette" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.Control, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Control.Composition.ControlInstaller" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Control.Logic.CursorRepeat" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.Screens, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Screens.Composition.ScreensInstaller" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Screens.Presentation.ScreensDocument" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Shared.Data.ArenaAsset" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Shared.Data.UnitClassAsset" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.TacticaAi.Sound, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.TacticaAi.Sound.Composition.SoundInstaller" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Sound.Data.SoundBank" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Sound.Presentation.SoundOutput" preserve="all" />
+    <type fullname="RoadAndCode.TacticaAi.Sound.Data.SoundEntry" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Volume" preserve="all" />
+    <type fullname="UnityEngine.Rendering.VolumeProfile" preserve="all" />
+    <type fullname="UnityEngine.Rendering.BoolParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.ClampedFloatParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.ClampedIntParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.ColorParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.MinFloatParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.TextureParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Vector2Parameter" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.Bloom" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.Tonemapping" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalCameraData" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.Vignette" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.BloomFilterModeParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Universal.DownscaleParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Universal.HDRACESPresetParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Universal.NeutralRangeReductionModeParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Universal.TemporalAA/Settings" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Universal.TonemappingModeParameter" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.IAssetBundleResource" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneInstance" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioClip" preserve="all" />
+    <type fullname="UnityEngine.AudioListener" preserve="all" />
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.Cubemap" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Light" preserve="all" />
+    <type fullname="UnityEngine.LightmapSettings" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RenderSettings" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.TextAsset" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Color" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Color32" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.LayerMask" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rect" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Vector2" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Vector2Int" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Vector4" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UIElements.PanelSettings" preserve="all" />
+    <type fullname="UnityEngine.UIElements.StyleSheet" preserve="all" />
+    <type fullname="UnityEngine.UIElements.ThemeStyleSheet" preserve="all" />
+    <type fullname="UnityEngine.UIElements.UIDocument" preserve="all" />
+    <type fullname="UnityEngine.UIElements.VisualTreeAsset" preserve="all" />
+    <type fullname="UnityEngine.UIElements.Button/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.DynamicAtlasSettings" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.Label/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.ScrollView/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.Specificity" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleComplexSelector" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleProperty" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleRule" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSelector" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSelectorPart" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheet/ImportStruct" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheets.Dimension" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheets.ResourcePath" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheets.ScalableImage" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleValueHandle" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.VisualElement/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.VisualElementAsset" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="VContainer">
+    <type fullname="VContainer.Unity.ParentReference" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>
