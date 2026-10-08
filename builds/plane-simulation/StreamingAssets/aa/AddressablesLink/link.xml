@@ -1,0 +1,102 @@
+<linker>
+  <assembly fullname="RoadAndCode.PlaneSimulation.App, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.App.FlightSceneScope" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.PlaneSimulation.CameraRig, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.CameraRig.CameraRigDefinition" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.CameraRig.CameraRigView" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.PlaneSimulation.Flight, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Presentation.AircraftDefinition" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Presentation.AircraftView" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Presentation.CrashEffectView" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.AircraftSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.EngineSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.FlapSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.FlightControlSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.GearSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.HullPoint" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.HullSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.MassSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.StabilitySpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Logic.WingSpec" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Presentation.ControlSurface" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Flight.Presentation.GearLeg" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="RoadAndCode.PlaneSimulation.Hud, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.Hud.UiRoot" preserve="all" />
+  </assembly>
+  <assembly fullname="RoadAndCode.PlaneSimulation.Mission, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.Mission.Evaluation.EvaluationStandards" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.Mission.Evaluation.Band" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Mission.Evaluation.LandingLimits" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Mission.Evaluation.TakeoffLimits" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="RoadAndCode.PlaneSimulation.World, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.World.Presentation.AirfieldDefinition" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.World.Presentation.PapiView" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.World.Logic.Obstacle" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioListener" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.Cubemap" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Light" preserve="all" />
+    <type fullname="UnityEngine.LightmapSettings" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RenderSettings" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.TextAsset" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Color" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Vector2Int" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Vector3" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UIElements.PanelSettings" preserve="all" />
+    <type fullname="UnityEngine.UIElements.StyleSheet" preserve="all" />
+    <type fullname="UnityEngine.UIElements.ThemeStyleSheet" preserve="all" />
+    <type fullname="UnityEngine.UIElements.UIDocument" preserve="all" />
+    <type fullname="UnityEngine.UIElements.VisualTreeAsset" preserve="all" />
+    <type fullname="UnityEngine.UIElements.DynamicAtlasSettings" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.Label/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.ScrollView/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.Specificity" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleComplexSelector" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleProperty" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleRule" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSelector" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSelectorPart" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheet/ImportStruct" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheets.Dimension" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheets.ResourcePath" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleSheets.ScalableImage" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.StyleValueHandle" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.VisualElement/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.VisualElementAsset" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="VContainer">
+    <type fullname="VContainer.Unity.ParentReference" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>

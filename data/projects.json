@@ -313,6 +313,88 @@
       ]
     },
     {
+      "id": "plane-simulation",
+      "title": "Plane Simulation",
+      "tagline": "Take off, fly the circuit and land a jet on a flight model written from scratch, then read a debrief that grades the flight like a check ride.",
+      "status": "live",
+      "year": "2026",
+      "role": "Solo: design, code, flight model, UI, build",
+      "skills": [
+        "gameplay",
+        "tools",
+        "web"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "stack": [
+        "Unity 6",
+        "URP",
+        "C#",
+        "VContainer",
+        "UI Toolkit",
+        "Input System",
+        "Addressables",
+        "Unity Test Framework"
+      ],
+      "media": {
+        "cover": "assets/projects/plane-simulation/takeoff-roll.jpg",
+        "shots": [
+          "assets/projects/plane-simulation/takeoff-roll.jpg",
+          "assets/projects/plane-simulation/landing-mode.jpg",
+          "assets/projects/plane-simulation/debrief.jpg"
+        ]
+      },
+      "build": {
+        "path": "builds/plane-simulation"
+      },
+      "summary": [
+        "One jet, one airfield. You start lined up on runway 36: open the throttle, rotate at the right speed, clean the aircraft up, fly round, select landing mode, follow the needles down and stop on the centreline. Then the game tells you how you did, item by item. It plays from the keyboard or a gamepad: W S A D for the stick, Left Shift and Left Ctrl for the throttle, G for the gear, F and V for the flaps, L for landing mode.",
+        "I built it to do a simulation properly at a small scale. The aircraft is not a Unity rigid body with forces bolted on. It is my own six-degree-of-freedom model, stepped at a fixed 120 Hz, with lift that stalls, drag that changes near the ground, three sprung wheels and a fly-by-wire control law. It can be crashed, and the debrief will say why."
+      ],
+      "highlights": [
+        "A flight model of my own, with no PhysX in it: a rigid body with six degrees of freedom, integrated at a fixed 120 Hz whatever the frame rate, with the drawn pose interpolated between steps.",
+        "Fly-by-wire. The stick asks for a pitch rate and a roll rate, and the control law protects the angle-of-attack and load-factor limits. Its authority comes from the airspeed, so the nose will not come up before rotation speed.",
+        "A check ride, not a score. The take-off is rated on six items and the landing on eleven, from centreline tracking and lift-off speed to sink rate, touchdown point, crab and bounces. Each is rated from Excellent to Fail against a band, and any Fail fails the ride.",
+        "Ways to crash: any part of the hull but the tail touching a surface, a touchdown that is too hard or too far sideways, an over-compressed strut, or running onto the grass too fast. The hangars and the tower are solid.",
+        "Approach guidance: needles for the glide slope and the centreline, the distance to the threshold and your speed against the reference, with PAPI lights beside the runway showing the same slope.",
+        "A scripted pilot in the tests flies the whole circuit through the real flight model, airfield and mission, from take-off to a full stop."
+      ],
+      "metrics": [
+        {
+          "label": "Download",
+          "value": "20.8 MB"
+        },
+        {
+          "label": "To the menu",
+          "value": "1.1 s"
+        },
+        {
+          "label": "CPU time per frame",
+          "value": "1.2 ms"
+        },
+        {
+          "label": "Draw calls",
+          "value": "57 to 65"
+        },
+        {
+          "label": "Automated tests",
+          "value": "111"
+        }
+      ],
+      "architecture": [
+        "Because the aircraft owns its physics, it behaves the same on every platform and needs no scene. The tests fly it directly: several minutes of flight across the suite, in about a fifth of a second. Devices become a plain frame of actions before the game sees them, and the scripted pilot flies through exactly that seam.",
+        "Four layers, each its own assembly: App, Features, Shared and a small core. The six features (input, flight, mission, world, HUD, camera) never reference each other, so one reaching into another does not compile. They talk through messages and interfaces in Shared. Nothing in the project has an Update: everything that runs per frame is a plain class ticked in a fixed order.",
+        "Tuning is data. The aircraft, the airfield, the grading standards and the cameras are ScriptableObjects, and the scenes, prefabs, materials and input actions are built by an editor script. A validator fails that build if any reference is left empty."
+      ],
+      "learned": [
+        "The runway, its markings and the ground around it are one mesh in which no two faces overlap, so nothing flickers at any distance. That mesh could not be marked static: Unity's static batching drew it with the wrong sub-meshes.",
+        "A model can come back from a re-export with a control reversed and nobody notices until the aircraft rolls the wrong way. The content builder checks which way the jet faces and works out the deflection direction of every control surface by probing its hinge.",
+        "There is a lot it does not have yet: no sound, one aircraft, one runway, no wind. The Android build has never been on a device, and nobody has landed the browser build by hand. The scripted pilot lands it in the tests.",
+        "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
+      ]
+    },
+    {
       "id": "playhub",
       "title": "PlayHub",
       "tagline": "Score-attack game with accounts, leaderboards and cloud saves on a Node.js backend.",
