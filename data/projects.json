@@ -425,13 +425,89 @@
     {
       "id": "devkit-pro",
       "title": "DevKit Pro",
-      "tagline": "The editor tools I reuse across these projects, as an installable package.",
-      "status": "planned",
+      "tagline": "Four Unity editor tools I kept rewriting, as one package that installs by Git URL and also runs from the command line.",
+      "status": "live",
+      "year": "2026",
+      "role": "Solo: design, code, tests, docs",
       "skills": [
-        "tools"
+        "tools",
+        "devops"
       ],
       "platforms": [
         "editor"
+      ],
+      "stack": [
+        "Unity 6",
+        "C#",
+        "Editor scripting",
+        "UI Toolkit",
+        "Package Manager",
+        "Addressables",
+        "Unity Test Framework"
+      ],
+      "media": {
+        "cover": "assets/projects/devkit-pro/cover.png",
+        "shots": [
+          "assets/projects/devkit-pro/validator.png",
+          "assets/projects/devkit-pro/addressables-audit.png",
+          "assets/projects/devkit-pro/build-runner.png",
+          "assets/projects/devkit-pro/scriptableobject-browser.png",
+          "assets/projects/devkit-pro/preferences.png"
+        ]
+      },
+      "downloads": [
+        {
+          "label": "Download .unitypackage",
+          "url": "https://github.com/roadandcode/devkit-pro/releases/download/v0.1.0/DevKitPro-0.1.0.unitypackage",
+          "size": "62 KB"
+        }
+      ],
+      "links": {
+        "source": "https://github.com/roadandcode/devkit-pro"
+      },
+      "summary": [
+        "Every project of mine ended up with the same handful of editor scripts: something to find broken references before a build did, something to make every platform's build the same way twice, something to tell me what was really in the Addressables groups. DevKit Pro is those tools written once, properly, as a Unity package: a Scene and Asset Validator, a Build Runner, an Addressables Audit and a ScriptableObject Browser.",
+        "Each one is a window in the editor and also a command. The command writes a report, as JSON or as text, and ends with an exit code, so the check I run by hand is the same check a build script can fail on.",
+        "To install it, open the Package Manager, choose \"Add package from git URL\" and paste https://github.com/roadandcode/devkit-pro.git?path=Packages/com.roadandcode.devkit#v0.1.0 or download the .unitypackage above and import it. It needs Unity 6000.5 and nothing else. The Addressables Audit switches itself on when Addressables is installed."
+      ],
+      "highlights": [
+        "Scene and Asset Validator: missing scripts, missing references, missing prefabs, reference fields left empty on the project's own scripts, and empty objects, across scenes, prefabs, ScriptableObjects and materials. Scenes that are not open are read and closed again without disturbing the ones that are.",
+        "Addressables Audit: groups nothing references, AssetReferences that lead nowhere, assets copied into several bundles because two groups need them, bundles over a size limit, and addresses used twice.",
+        "Build Runner: a Build Plan asset lists the project's Web, Windows and Android builds with an output path each. The plan is checked before anything is built, and player settings a build overrides are put back afterwards.",
+        "ScriptableObject Browser: every data asset in the project by type, with search and the inspector in place.",
+        "A preferences page per tool, and shortcuts registered with Unity's Shortcut Manager so they can be rebound.",
+        "No dependencies. It does not need my other packages or a dependency injection container, and it compiles in a project without Addressables."
+      ],
+      "metrics": [
+        {
+          "label": "Automated tests",
+          "value": "224"
+        },
+        {
+          "label": "Whole-project validation",
+          "value": "0.17 s"
+        },
+        {
+          "label": "Addressables audit",
+          "value": "0.07 s"
+        },
+        {
+          "label": "Compiler warnings it adds",
+          "value": "0"
+        },
+        {
+          "label": "Package size",
+          "value": "62 KB"
+        }
+      ],
+      "architecture": [
+        "One assembly per tool, all editor-only, and no tool references another. Inside a tool the analysis is plain C#: project data comes in as records, findings come out as data, and nothing in it touches the editor. Adapters read the project through the editor API, and a UI Toolkit window sits on top as a thin view over a presenter. Editor windows cannot be opened in an automated run, so everything a window does apart from drawing lives where a test can drive it.",
+        "The Addressables Audit is two assemblies. The rules know nothing about the Addressables package; a second assembly, compiled only when that package is present, reads its settings into the audit's own records. That is why the package installs cleanly into a project without Addressables, and why the rules can be tested there.",
+        "The two timings above are from my own projects, Tactica AI and Plane Simulation, with the package installed by Git URL into a copy of each. It found the same thing in both: nine components in the default volume profile, left there by Unity's project template, made from scripts that are in no project. It also showed me two things the validator had wrong, which sample data never would have."
+      ],
+      "learned": [
+        "A build can report success and be broken. My first web build from the Build Runner finished with the right size and a success message, and had an Addressables catalog with no bundles behind it. Unity will build a platform the editor is not switched to, and Addressables will not follow. I only saw it because I opened the output folder. The tool switches platform first now.",
+        "Addressables tidies up after you without saying so. I planted an entry for a deleted asset to test a check, and it was gone the next time the project opened. No error, no failed build. What stays broken is the reference that pointed at it, so that is what the audit reports."
       ]
     },
     {
