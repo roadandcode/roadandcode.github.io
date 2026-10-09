@@ -318,7 +318,7 @@
       "tagline": "Take off, fly the circuit and land a jet on a flight model written from scratch, then read a debrief that grades the flight like a check ride.",
       "status": "live",
       "year": "2026",
-      "role": "Solo: design, code, flight model, UI, build",
+      "role": "Solo: design, code, flight model, UI, sound, build",
       "skills": [
         "gameplay",
         "tools",
@@ -349,7 +349,7 @@
         "path": "builds/plane-simulation"
       },
       "summary": [
-        "One jet, one airfield. You start lined up on runway 36: open the throttle, rotate at the right speed, clean the aircraft up, fly round, select landing mode, follow the needles down and stop on the centreline. Then the game tells you how you did, item by item. It plays from the keyboard or a gamepad: W S A D for the stick, Left Shift and Left Ctrl for the throttle, G for the gear, F and V for the flaps, L for landing mode.",
+        "One jet, one airfield. You start lined up on runway 36: open the throttle, rotate at the right speed, clean the aircraft up, fly round, select landing mode, follow the needles down and stop on the centreline. Then the game tells you how you did, item by item. It plays from the keyboard or a gamepad: W S A D for the stick, Left Shift and Left Ctrl for the throttle, G for the gear, F and V for the flaps, L for landing mode, M to turn the sound off.",
         "I built it to do a simulation properly at a small scale. The aircraft is not a Unity rigid body with forces bolted on. It is my own six-degree-of-freedom model, stepped at a fixed 120 Hz, with lift that stalls, drag that changes near the ground, three sprung wheels and a fly-by-wire control law. It can be crashed, and the debrief will say why."
       ],
       "highlights": [
@@ -358,6 +358,7 @@
         "A check ride, not a score. The take-off is rated on six items and the landing on eleven, from centreline tracking and lift-off speed to sink rate, touchdown point, crab and bounces. Each is rated from Excellent to Fail against a band, and any Fail fails the ride.",
         "Ways to crash: any part of the hull but the tail touching a surface, a touchdown that is too hard or too far sideways, an over-compressed strut, or running onto the grass too fast. The hangars and the tower are solid.",
         "Approach guidance: needles for the glide slope and the centreline, the distance to the threshold and your speed against the reference, with PAPI lights beside the runway showing the same slope.",
+        "Sound made by code. The engine is a turbine whine with a roar that comes in with thrust, and with it the airflow, the wheels on the runway, the gear and flap motor, the stall warning, the touchdown and the crash. Every sound is synthesised from sines and filtered noise while the game loads: there are no audio files, and it added 0.06 MB to the download.",
         "A scripted pilot in the tests flies the whole circuit through the real flight model, airfield and mission, from take-off to a full stop."
       ],
       "metrics": [
@@ -367,11 +368,11 @@
         },
         {
           "label": "To the menu",
-          "value": "1.1 s"
+          "value": "1.1 to 1.4 s"
         },
         {
           "label": "CPU time per frame",
-          "value": "1.2 ms"
+          "value": "1.1 ms"
         },
         {
           "label": "Draw calls",
@@ -379,18 +380,19 @@
         },
         {
           "label": "Automated tests",
-          "value": "111"
+          "value": "162"
         }
       ],
       "architecture": [
         "Because the aircraft owns its physics, it behaves the same on every platform and needs no scene. The tests fly it directly: several minutes of flight across the suite, in about a fifth of a second. Devices become a plain frame of actions before the game sees them, and the scripted pilot flies through exactly that seam.",
-        "Four layers, each its own assembly: App, Features, Shared and a small core. The six features (input, flight, mission, world, HUD, camera) never reference each other, so one reaching into another does not compile. They talk through messages and interfaces in Shared. Nothing in the project has an Update: everything that runs per frame is a plain class ticked in a fixed order.",
+        "Four layers, each its own assembly: App, Features, Shared and a small core. The seven features (input, flight, mission, world, HUD, camera, sound) never reference each other, so one reaching into another does not compile. They talk through messages and interfaces in Shared. Nothing in the project has an Update: everything that runs per frame is a plain class ticked in a fixed order.",
         "Tuning is data. The aircraft, the airfield, the grading standards and the cameras are ScriptableObjects, and the scenes, prefabs, materials and input actions are built by an editor script. A validator fails that build if any reference is left empty."
       ],
       "learned": [
+        "The first version of the sound shipped as audio files, and measuring the browser build showed two things I would not have heard for certain. Every loop came back from the browser about 20 ms longer than it went in, because Unity hands a browser compressed audio whatever the import settings say: a gap every time round. And a loop started at a pitch other than 1 played at the wrong pitch until its pitch next changed. The sounds are now rendered as samples when the game starts, at 44.1 kHz, and both are gone: each loop is exactly its length, and the flap motor measures 225 Hz where it should be 225.",
         "The runway, its markings and the ground around it are one mesh in which no two faces overlap, so nothing flickers at any distance. That mesh could not be marked static: Unity's static batching drew it with the wrong sub-meshes.",
         "A model can come back from a re-export with a control reversed and nobody notices until the aircraft rolls the wrong way. The content builder checks which way the jet faces and works out the deflection direction of every control surface by probing its hinge.",
-        "There is a lot it does not have yet: no sound, one aircraft, one runway, no wind. The Android build has never been on a device, and nobody has landed the browser build by hand. The scripted pilot lands it in the tests.",
+        "There is a lot it does not have yet: one aircraft, one runway, no wind. The sound is a first pass that I have measured more than I have tuned. The Android build has never been on a device, and nobody has landed the browser build by hand. The scripted pilot lands it in the tests.",
         "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
       ]
     },

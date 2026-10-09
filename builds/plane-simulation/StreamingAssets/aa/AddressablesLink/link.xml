@@ -32,6 +32,17 @@
     <type fullname="RoadAndCode.PlaneSimulation.Mission.Evaluation.LandingLimits" preserve="nothing" serialized="true" />
     <type fullname="RoadAndCode.PlaneSimulation.Mission.Evaluation.TakeoffLimits" preserve="nothing" serialized="true" />
   </assembly>
+  <assembly fullname="RoadAndCode.PlaneSimulation.Sound, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Presentation.SoundDefinition" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Presentation.SoundView" preserve="all" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.AirflowSound" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.CueLevels" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.EngineSound" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.MixLevels" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.SoundTuning" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.SystemSounds" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.PlaneSimulation.Sound.Logic.WheelSound" preserve="nothing" serialized="true" />
+  </assembly>
   <assembly fullname="RoadAndCode.PlaneSimulation.World, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="RoadAndCode.PlaneSimulation.World.Presentation.AirfieldDefinition" preserve="all" />
     <type fullname="RoadAndCode.PlaneSimulation.World.Presentation.PapiView" preserve="all" />
@@ -48,6 +59,7 @@
   </assembly>
   <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.AudioListener" preserve="all" />
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Camera" preserve="all" />
