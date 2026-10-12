@@ -585,9 +585,9 @@
       ]
     },
     {
-      "id": "arena-sync",
-      "title": "Arena Sync",
-      "tagline": "2-4 player arena on Photon Fusion with server-authoritative, predicted movement.",
+      "id": "hitscan",
+      "title": "Hitscan",
+      "tagline": "A first-person arena shooter on Photon Fusion: predicted movement, lag-compensated hits, and bots when you are alone.",
       "status": "planned",
       "skills": [
         "multiplayer",
