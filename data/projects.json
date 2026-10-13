@@ -587,15 +587,93 @@
     {
       "id": "hitscan",
       "title": "Hitscan",
-      "tagline": "A first-person arena shooter on Photon Fusion: predicted movement, lag-compensated hits, and bots when you are alone.",
-      "status": "planned",
+      "tagline": "A fast first-person arena shooter on Photon Fusion: predicted movement, shots that count the way you saw them, and bots when you are alone.",
+      "status": "live",
+      "year": "2026",
+      "role": "Solo: design, code, netcode, bots, level, models, sound, build",
       "skills": [
         "multiplayer",
-        "gameplay"
+        "gameplay",
+        "ai",
+        "web"
       ],
       "platforms": [
-        "web",
-        "windows"
+        "web"
+      ],
+      "stack": [
+        "Unity 6",
+        "URP",
+        "C#",
+        "Photon Fusion 2",
+        "Fusion Simple KCC",
+        "UI Toolkit",
+        "Input System",
+        "Addressables",
+        "Unity Test Framework"
+      ],
+      "media": {
+        "cover": "assets/projects/hitscan/arena.jpg",
+        "shots": [
+          "assets/projects/hitscan/arena.jpg",
+          "assets/projects/hitscan/bounty.jpg",
+          "assets/projects/hitscan/rail.jpg",
+          "assets/projects/hitscan/fight.jpg",
+          "assets/projects/hitscan/scoreboard.jpg",
+          "assets/projects/hitscan/title.jpg"
+        ]
+      },
+      "build": {
+        "path": "builds/hitscan"
+      },
+      "summary": [
+        "An arena shooter for up to eight. You run fast, jump twice, dash, ride jump pads and rocket-jump, and you carry three weapons from the start: a Rail that kills with a headshot, an automatic Repeater and a rocket Launcher. One player hosts and decides everything. Everyone else predicts their own movement, so the game answers your keys at once whatever the connection is doing. Bots fill the places people leave empty, so alone it is still a full match, and Practice needs no connection at all.",
+        "The default mode is Bounty. A kill is a point, and whoever leads is marked for everyone, through walls, with a price on them that grows with every kill they make. Killing them pays it, so nobody stays comfortably ahead. To play with someone, press Create room and give them the four-letter code, or send them the game's address with ?join= and the code on the end. If you host from a browser, keep the tab in front: a hidden tab all but stops."
+      ],
+      "highlights": [
+        "The host decides everything and simulates 64 ticks a second. A client predicts its own movement and weapons and is corrected when the host disagrees.",
+        "Lag compensation: the host judges a shot against where the target was on the shooter's screen. I measured it with a strafing target at a 100 ms ping. Of 74 shots that hit on the shooter's screen the host counted 74, and with rewinding switched off, between 3 and 6.",
+        "Keyboard and mouse, a gamepad and a bot's brain all produce the same small command. From the line where it is taken, the simulation does not know which of them it came from.",
+        "Bots with three temperaments and three difficulties, walking a map sampled from the arena's own colliders. They aim worse the faster you cross their view, hold a grudge against whoever killed them last, and go for the leader.",
+        "Bounty, Classic and Team Deathmatch. Five mutators a room can pick from: instagib, low gravity, rockets only, vampire and turbo. Medals, and a profile whose levels unlock colours and nothing else.",
+        "No art was downloaded. The arena, the bodies and the weapons are generated from code, and every sound is synthesised when the game starts.",
+        "Wired by hand, with no dependency injection container. Two classes make everything with new, in order, so how the game starts can be read from top to bottom."
+      ],
+      "metrics": [
+        {
+          "label": "Download",
+          "value": "18.6 MB"
+        },
+        {
+          "label": "Hits counted at 100 ms ping",
+          "value": "74 of 74"
+        },
+        {
+          "label": "CPU time per frame",
+          "value": "2.2 ms"
+        },
+        {
+          "label": "Draw calls",
+          "value": "80 to 125"
+        },
+        {
+          "label": "One client sends",
+          "value": "2 kB a second"
+        },
+        {
+          "label": "Automated tests",
+          "value": "406"
+        }
+      ],
+      "architecture": [
+        "The rules of the game are plain C# with no Unity objects and no network in them: movement, weapons, damage, scoring, the bounty, medals. Every function is handed the tick it is for. That is what lets Fusion run the same tick twice when a correction arrives and get the same answer, and it is what lets 180 tests check the rules without a scene.",
+        "Only one module can see Fusion. Its networked objects are adapters: they read networked numbers into plain values, ask the rules, and write the answer back. The screens, the sound, the effects and the profile never see the network either. They listen to the same messages, a shot, a hit, a kill, and know nothing of each other.",
+        "A frame has a stated order, and it mattered. Fusion simulates before Unity's Update runs, so input gathered in Update would always be a frame old by the time it was simulated. It is read the moment the Input System has it."
+      ],
+      "learned": [
+        "I did not know whether a browser could host a room. It can, and the measurements say what it costs. Every connection to or from a browser goes through a relay: about 200 ms round trip from my desk, against about 25 ms between two desktop builds. And a hosting tab that is hidden steps once a second. So the game is built to play well at that ping, and a browser host has to stay in front.",
+        "Two flaws only showed when I traced the first seconds of a round. Bots were allowed to walk during the countdown, and one would be standing with a line on the player the instant the weapons went live. And four spawn points could see each other down one corridor. Now the countdown holds everyone still, and the tool that builds the arena counts spawn points in sight of each other and has to report none.",
+        "In a browser, Unity says the mouse is captured from the moment it is asked, whether or not the browser has granted it. Only the page knows, so the game asks the page.",
+        "All of these numbers are from one fast desktop, with every player on that same machine. I have not measured a real network between two computers, a gamepad, slow hardware or a phone. And nobody has listened to the sound yet: I checked its levels, not how it sounds."
       ]
     },
     {
