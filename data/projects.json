@@ -705,6 +705,10 @@
         "shots": [
           "assets/projects/casino-suite/slot.jpg",
           "assets/projects/casino-suite/lobby.jpg",
+          "assets/projects/casino-suite/crash.jpg",
+          "assets/projects/casino-suite/plinko.jpg",
+          "assets/projects/casino-suite/poker.jpg",
+          "assets/projects/casino-suite/baccarat.jpg",
           "assets/projects/casino-suite/blackjack.jpg",
           "assets/projects/casino-suite/roulette.jpg",
           "assets/projects/casino-suite/fairness.jpg",
@@ -715,14 +719,15 @@
         "path": "builds/casino-suite"
       },
       "summary": [
-        "A five-reel video slot, blackjack at two tables and European roulette, played with free chips that are worth nothing and cannot be bought. Underneath is the part I wanted to show: the casino's server, running in the page behind a simulated network and written the way a real one is. Every chip moves through a double-entry ledger. A bet and its result are one round under an idempotency key, so a request retried on a bad connection is taken exactly once. A round left open by a reload carries on where it was, and every outcome comes from a committed seed you can check afterwards.",
-        "Claim the daily bonus for chips and ten free spins. Starfall Gems pays on 20 lines with a wild, a scatter, and free spins in which every win is tripled, and any spin can win the progressive jackpot. The developer tools (F2, or Settings) make the network as bad as you like and stand in for the casino's back office: move its clock, make the next settlement fail, switch games off. Free play only: nothing can be bought or cashed out."
+        "Seven games: a five-reel video slot, blackjack at two tables, European roulette, Plinko, a crash game called Shooting Star, Jacks or Better video poker and baccarat, played with free chips that are worth nothing and cannot be bought. Underneath is the part I wanted to show: the casino's server, running in the page behind a simulated network and written the way a real one is. Every chip moves through a double-entry ledger. A bet and its result are one round under an idempotency key, so a request retried on a bad connection is taken exactly once. A round left open by a reload carries on where it was, and every outcome comes from a committed seed you can check afterwards.",
+        "Claim the daily bonus for chips and ten free spins. Starfall Gems pays on 20 lines with a wild, a scatter, and free spins in which every win is tripled, and any spin can win the progressive jackpot. In Shooting Star the server has already drawn where the star bursts: cash out before it does, or set a target and the server cashes you out when the star gets there. The developer tools (F2, or Settings) make the network as bad as you like and stand in for the casino's back office: move its clock, make the next settlement fail, switch games off. Free play only: nothing can be bought or cashed out."
       ],
       "highlights": [
         "A server in plain C#, compiled without Unity and reached only through JSON requests over a simulated network with latency, lost requests, lost answers and gateway errors. It could move behind a real HTTP host without a change.",
         "A double-entry ledger in hundredths of a chip that reconciles to zero, and a journal that replays an unfinished write after a crash. Bets are all or nothing: a settlement made to fail rolls back whole, and the client's retry, with the same key, settles once.",
-        "Provably fair. The server commits to a hashed seed before you play, every reel stop, card and pocket is read from an HMAC stream of that seed, your seed and a counter, and rotating reveals it. The fair-play panel replays any round on your device with the server's own rules.",
-        "The maths is data with tests. Starfall Gems returns 95.00%, worked out exactly from its reel strips and checked over ten million spins; blackjack 99.62% and 99.48% with basic strategy over four million hands; every one of roulette's 157 bets returns 36 for 37.",
+        "Provably fair. The server commits to a hashed seed before you play, every reel stop, card, pocket, Plinko turn and burst point is read from an HMAC stream of that seed, your seed and a counter, and rotating reveals it. The fair-play panel replays any round on your device with the server's own rules.",
+        "The maths is data with tests. Starfall Gems returns 95.00%, worked out exactly from its reel strips and checked over ten million spins; blackjack 99.62% and 99.48% with basic strategy over four million hands; every one of roulette's 157 bets returns 36 for 37; each of Plinko's nine boards returns between 98.85% and 99.14%, worked out exactly; the crash game returns 97% whatever you aim for; baccarat's chances match the published ones to six places; and a test ranks all 2,598,960 poker hands.",
+        "Rounds that end by the server's clock. A crash flight that bursts, or reaches its target, with nobody asking is settled the next time the server looks, and a cash-out is judged when it arrives, as on a real server. Leave a flight and come back, and it is still in the air at the right height.",
         "Responsible play enforced by the server: loss and time limits (raising one waits a day), reality checks, cool-offs, and a session clock always in view. No autoplay, turbo or slam stop.",
         "A progressive jackpot fed by slot stakes, a daily bonus with free spins and a wagering requirement, levels, achievements, and chip sets and cloths that unlock nothing else.",
         "No downloaded art: symbols, cards, chips, cloths and the wheel are drawn by a small rasteriser of my own, and every sound is synthesised when the game starts."
@@ -730,7 +735,7 @@
       "metrics": [
         {
           "label": "Download",
-          "value": "18.1 MB"
+          "value": "19.5 MB"
         },
         {
           "label": "Slot return, exact",
@@ -742,7 +747,7 @@
         },
         {
           "label": "CPU time per frame",
-          "value": "0.6 to 1.2 ms"
+          "value": "0.4 to 1.2 ms"
         },
         {
           "label": "Allocated by a quiet frame",
@@ -750,7 +755,7 @@
         },
         {
           "label": "Automated tests",
-          "value": "384"
+          "value": "478"
         }
       ],
       "architecture": [
@@ -764,6 +769,7 @@
       "learned": [
         "The network taught me the most. With 30% of answers lost, one spin's request gave up after four tries and the game said nothing had happened, but the server had taken it: only its answer was lost. Now the game says the spin may be in the history, and fetches the balance again.",
         "At small stakes the jackpot never grew: half a percent of a one-chip stake is less than a hundredth of a chip. The share is now worked out in ten-thousandths and the remainder carried to the next spin, the way a real pool keeps its fractions.",
+        "A crash game needs the server to end a round nobody touches. Mine runs nothing in the background, so the round service ends any flight whose time is up whenever it next looks at the account, and the game asks every 0.4 seconds. A real one would push the burst to every player the moment it happens.",
         "A slot's stop button is a slam stop. It speeds play up the way turbo does, and both are banned in some markets for good reasons, so I took it out.",
         "All of these numbers are from one fast desktop. I have not measured a phone, slow hardware or a real network, and nobody has listened to the sound yet: I checked its levels, not how it sounds."
       ]
