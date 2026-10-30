@@ -138,7 +138,8 @@
       "learned": [
         "Measure on the real thing. The score display built no strings and passed its allocation test, and still allocated about 360 bytes on every change once it was on screen, because UI Toolkit allocates whenever a label's text changes. It is now a row of reels that slide, and a test measures whole frames on the live HUD.",
         "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
-      ]
+      ],
+      "orientation": "landscape"
     },
     {
       "id": "cine-director",
@@ -220,7 +221,8 @@
         "Look at the picture where it will be watched. My editor screenshots were rendered into an 8-bit target, which clamps the image before bloom runs, so bloom looked absent and I kept turning it up. The first browser build showed the real thing: a halo round every lamp.",
         "A set made of 249 boxes cost 1,226 draw calls on the title card alone. Merging everything that never moves brought that to 461, in pieces kept small enough that each one is still lit by the lamps nearest to it.",
         "The numbers above come from a fast desktop and a local server. They show what the film costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
-      ]
+      ],
+      "orientation": "landscape"
     },
     {
       "id": "tactica-ai",
@@ -304,7 +306,8 @@
         "The first browser build made about 400 draw calls for six units. Every model was ten primitives, each drawn for colour, again for ambient occlusion and again for four shadow cascades. Merging each model into one mesh per material and cutting the render pipeline down to what a small board needs brought a match to between 85 and 137.",
         "The first match began with a frame of nearly a second, because everything was drawn for the first time on the frame after Play was pressed. The board now draws itself once while the app starts, behind a cover, and the first match's longest frame is 12.5 ms.",
         "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
-      ]
+      ],
+      "orientation": "any"
     },
     {
       "id": "plane-simulation",
@@ -387,7 +390,8 @@
         "A model can come back from a re-export with a control reversed and nobody notices until the aircraft rolls the wrong way. The content builder checks which way the jet faces and works out the deflection direction of every control surface by probing its hinge.",
         "There is a lot it does not have yet: one aircraft, one runway, no wind. The sound is a first pass that I have measured more than I have tuned. The Android build has never been on a device, and nobody has landed the browser build by hand. The scripted pilot lands it in the tests.",
         "The numbers above come from a fast desktop and a local server. They show what the game costs, not how it runs on a slow laptop or a phone, which I have not measured yet."
-      ]
+      ],
+      "orientation": "landscape"
     },
     {
       "id": "playhub",
@@ -486,7 +490,8 @@
         "An animation job cannot call ordinary code, so my constraint is split in two. A plain class works out breath and sway, which is the part worth testing, and the job only applies what it is handed.",
         "My first walk looked like a crouch. I had kept the legs to 96.5% of their length to leave room for the IK; at 98.5% it reads as a walk, and the rule that lowers the body to the lower foot gives the IK its room instead.",
         "The numbers above come from a fast desktop and a local server. They show what a frame costs, not how it runs on a slow laptop or a phone, which I have not measured. And nobody has listened to the sound yet: I checked its levels and timing, not how it sounds."
-      ]
+      ],
+      "orientation": "any"
     },
     {
       "id": "devkit-pro",
@@ -661,7 +666,8 @@
         "Two flaws only showed when I traced the first seconds of a round. Bots were allowed to walk during the countdown, and one would be standing with a line on the player the instant the weapons went live. And four spawn points could see each other down one corridor. Now the countdown holds everyone still, and the tool that builds the arena counts spawn points in sight of each other and has to report none.",
         "In a browser, Unity says the mouse is captured from the moment it is asked, whether or not the browser has granted it. Only the page knows, so the game asks the page.",
         "All of these numbers are from one fast desktop, with every player on that same machine. I have not measured a real network between two computers, a gamepad, slow hardware or a phone. And nobody has listened to the sound yet: I checked its levels, not how it sounds."
-      ]
+      ],
+      "orientation": "landscape"
     },
     {
       "id": "casino-suite",
@@ -770,7 +776,8 @@
         "A shooter rolled more than twenty times without a seven while I was testing on a bad network. Before calling it luck I counted 200,000 throws through the real round service: the totals and the faces are as fair dice give.",
         "A slot's stop button is a slam stop. It speeds play up the way turbo does, and both are banned in some markets for good reasons, so I took it out.",
         "All of these numbers are from one fast desktop. I have not measured a phone, slow hardware or a real network, and nobody has listened to the sound yet: I checked its levels, not how it sounds."
-      ]
+      ],
+      "orientation": "any"
     },
     {
       "id": "vr-workshop",

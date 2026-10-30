@@ -53,12 +53,18 @@ function stage(p) {
         : `<span class="hud">${esc(views[0][1])}</span>`;
 
     return `
-        <section class="stage" id="stage" data-first="${views[0][0]}">
+        <section class="stage" id="stage" data-first="${views[0][0]}" data-orientation="${esc(p.orientation ?? 'any')}">
             <div class="stage__view" id="stage-view"></div>
             <div class="stage__bar">
                 ${tabs}
-                <button class="btn btn--sm" type="button" data-fullscreen>${ICON.full}Fullscreen</button>
+                <button class="btn btn--sm" type="button" data-fullscreen>${ICON.full}<span>Fullscreen</span></button>
             </div>
+            ${p.orientation === 'landscape' || p.orientation === 'portrait' ? `
+                <button class="stage__rotate" type="button" data-rotate-dismiss>
+                    ${ICON.rotate}
+                    <strong>Rotate your device</strong>
+                    <span class="hud">This one plays ${p.orientation}. Tap to carry on anyway.</span>
+                </button>` : ''}
         </section>`;
 }
 
@@ -172,11 +178,9 @@ function wireStage(p) {
         if (tab) return select(tab.dataset.view);
         const go = e.target.closest('[data-start]');
         if (go) return start[go.dataset.start]();
-        if (e.target.closest('[data-fullscreen]')) {
-            if (document.fullscreenElement) document.exitFullscreen();
-            else stageEl.requestFullscreen?.();
-        }
     });
+
+    wireFullscreen(stageEl);
 
     select(stageEl.dataset.first);
 

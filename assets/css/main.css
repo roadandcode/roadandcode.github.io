@@ -1172,22 +1172,105 @@ html.js [data-reveal].is-in {
 }
 
 .stage {
+    position: relative;
     overflow: hidden;
     border: 1px solid var(--line-soft);
     border-radius: var(--radius);
     background: #000;
 }
 
-.stage:fullscreen {
+/* Fullscreen, or the whole window where the browser has no fullscreen for this (iPhone). */
+.stage.is-full {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
     border: 0;
     border-radius: 0;
 }
 
-.stage:fullscreen .stage__view {
+.stage.is-full .stage__view {
     flex: 1;
+    min-height: 0;
     aspect-ratio: auto;
+}
+
+.stage.is-full .stage__bar {
+    justify-content: flex-end;
+}
+
+.stage.is-full .tabs,
+.stage.is-full > .stage__bar > .hud {
+    display: none;
+}
+
+html.has-full-stage,
+html.has-full-stage body {
+    overflow: hidden;
+}
+
+.stage__rotate {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: none;
+    place-content: center;
+    justify-items: center;
+    gap: .8rem;
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(9, 11, 17, .96);
+    text-align: center;
+    color: var(--text);
+}
+
+.stage__rotate svg {
+    width: 56px;
+    color: var(--accent);
+}
+
+.stage__rotate strong {
+    font-size: 1.4rem;
+    letter-spacing: -.02em;
+}
+
+/* A browser that can lock the orientation has already turned the game, so this never shows there. */
+@media (pointer: coarse) and (orientation: portrait) {
+    .stage.is-full[data-orientation="landscape"]:not(.is-rotate-dismissed) .stage__rotate {
+        display: grid;
+    }
+}
+
+@media (pointer: coarse) and (orientation: landscape) {
+    .stage.is-full[data-orientation="portrait"]:not(.is-rotate-dismissed) .stage__rotate {
+        display: grid;
+    }
+}
+
+/* A phone on its side has height to spare for nothing: the bar becomes a thin column beside the game. */
+@media (max-height: 500px) {
+    .stage.is-full {
+        flex-direction: row;
+    }
+
+    .stage.is-full .stage__bar {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: .4rem;
+        border-top: 0;
+        border-left: 1px solid var(--line-soft);
+    }
+
+    .stage.is-full [data-fullscreen] span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+    }
 }
 
 .stage__view {
