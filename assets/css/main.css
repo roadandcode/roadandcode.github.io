@@ -1100,16 +1100,6 @@ html.js [data-reveal].is-in {
     filter: none;
 }
 
-.about__photo figcaption {
-    position: absolute;
-    left: 12px;
-    bottom: 12px;
-    padding: .45em .7em;
-    border-radius: 7px;
-    background: rgba(9, 11, 17, .72);
-    color: var(--text);
-}
-
 .about__text > p {
     margin-bottom: 1.1em;
     font-size: clamp(1.15rem, 1.75vw, 1.5rem);
