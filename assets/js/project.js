@@ -1,4 +1,5 @@
-import { loadData, isLive, esc, ICON } from './data.js';
+import { loadData, isLive, isListed, esc, ICON } from './data.js';
+import { wireFullscreen } from './fullscreen.js';
 
 const rootEl = document.getElementById('project-root');
 const lightbox = document.getElementById('lightbox');
@@ -103,8 +104,8 @@ function spec(p, data) {
 
 function render(p, data) {
     document.title = `${p.title} | Ravi Chaudhary`;
-    const live = data.projects.filter(isLive);
-    const next = live[(live.indexOf(p) + 1) % live.length];
+    const listed = data.projects.filter(isListed);
+    const next = listed[(listed.indexOf(p) + 1) % listed.length];
     const plats = (p.platforms ?? []).map((id) => data.platforms[id] ?? id).join(' / ');
 
     rootEl.innerHTML = `
@@ -203,10 +204,8 @@ try {
     const id = new URLSearchParams(location.search).get('id');
     const project = data.projects.find((p) => p.id === id);
 
-    if (!project) {
+    if (!project || !isLive(project)) {
         notice('404', 'Level not found.', 'There\'s no project at this address.');
-    } else if (!isLive(project)) {
-        notice('On the bench', esc(project.title), `${esc(project.tagline)} It isn't playable yet.`);
     } else {
         render(project, data);
     }

@@ -16,6 +16,9 @@ export function loadData() {
 
 export const isLive = (p) => p.status === 'live';
 
+// A hidden project keeps its page, but nothing on the site points to it.
+export const isListed = (p) => isLive(p) && !p.hidden;
+
 export function esc(value) {
     return String(value ?? '').replace(/[&<>"']/g, (c) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',

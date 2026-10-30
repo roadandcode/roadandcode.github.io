@@ -19,7 +19,6 @@
     "vr": "VR",
     "editor": "Unity Editor"
   },
-  "showRoadmap": true,
   "projects": [
     {
       "id": "mealmadness",
@@ -47,7 +46,8 @@
       },
       "summary": [
         "A small order-rush game: customers queue up, you put their meals together and get them out before the line backs up."
-      ]
+      ],
+      "hidden": true
     },
     {
       "id": "multi-build-forge",

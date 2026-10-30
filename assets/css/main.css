@@ -811,110 +811,10 @@ html.js [data-reveal].is-in {
     color: var(--soft);
 }
 
-.card--ghost {
-    justify-content: space-between;
-    gap: 2rem;
-    min-height: 240px;
-    padding: 1.4rem;
-    border-style: dashed;
-    border-color: var(--line);
-    background: transparent;
-}
-
-.card--ghost strong {
-    display: block;
-    font-size: clamp(3.6rem, 7vw, 6rem);
-    font-weight: 800;
-    font-stretch: 80%;
-    line-height: .9;
-    letter-spacing: -.036em;
-}
-
-.card--ghost p {
-    margin-top: .5rem;
-    color: var(--muted);
-}
-
-.card--ghost .hud:last-child {
-    color: var(--text);
-}
-
-/* Every project card is the same size, three to a row. The ghost card takes whatever is left of its row. */
-.card--ghost:nth-child(3n + 2) {
-    grid-column: span 8;
-}
-
-.card--ghost:nth-child(3n + 1) {
-    grid-column: span 12;
-    flex-direction: row;
-    align-items: center;
-    min-height: 0;
-}
-
 .grid__empty {
     grid-column: 1 / -1;
     padding: 2.5rem 0;
     color: var(--muted);
-}
-
-.quest {
-    margin-top: clamp(3.5rem, 8vw, 7rem);
-}
-
-.quest__head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem 3rem;
-    margin-bottom: 1.4rem;
-}
-
-.quest__head h3 {
-    font-size: clamp(1.7rem, 3.2vw, 2.6rem);
-    font-stretch: 88%;
-    letter-spacing: -.03em;
-    line-height: 1;
-}
-
-.quest__head p {
-    max-width: 46ch;
-    font-size: .98rem;
-    color: var(--muted);
-}
-
-.quest__list {
-    border-top: 1px solid var(--line);
-}
-
-.quest__row {
-    display: grid;
-    grid-template-columns: 2.6rem 13rem minmax(0, 1fr) 13rem 6.5rem;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.05rem .5rem;
-    border-bottom: 1px solid var(--line-soft);
-    transition: background .25s, padding .35s var(--ease);
-}
-
-.quest__row:hover {
-    background: var(--surface);
-    padding-left: 1.1rem;
-}
-
-.quest__title {
-    font-size: 1.12rem;
-    font-weight: 650;
-    letter-spacing: -.015em;
-}
-
-.quest__what {
-    font-size: .95rem;
-    color: var(--muted);
-}
-
-.quest__plat {
-    text-align: right;
 }
 
 .status {
@@ -936,14 +836,6 @@ html.js [data-reveal].is-in {
     height: 7px;
     border-radius: 50%;
     background: currentColor;
-}
-
-.status.is-building {
-    color: var(--accent);
-}
-
-.status.is-building::before {
-    animation: pulse 2s infinite;
 }
 
 .status.is-live {

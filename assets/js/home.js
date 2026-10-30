@@ -1,10 +1,8 @@
-import { loadData, isLive, esc } from './data.js';
+import { loadData, isListed, esc } from './data.js';
 import { reveal } from './site.js';
 
 const grid = document.getElementById('grid');
 const filters = document.getElementById('filters');
-const roadmap = document.getElementById('roadmap');
-const questList = document.getElementById('quest-list');
 
 let data;
 let active = 'all';
@@ -42,44 +40,27 @@ function card(p, index) {
         </a>`;
 }
 
-function ghost(count) {
-    return `
-        <a class="card card--ghost spot" href="#roadmap" data-reveal>
-            <p class="hud">On the bench</p>
-            <div>
-                <strong>+${count}</strong>
-                <p>more ${count === 1 ? 'build' : 'builds'} in progress</p>
-            </div>
-            <p class="hud">See the quest log &darr;</p>
-        </a>`;
-}
-
 function renderGrid() {
-    const live = data.projects.filter(isLive);
-    const pending = data.projects.length - live.length;
-    const shown = active === 'all' ? live : live.filter((p) => p.skills?.includes(active));
+    const listed = data.projects.filter(isListed);
+    const shown = active === 'all' ? listed : listed.filter((p) => p.skills?.includes(active));
 
-    let html = shown.map(card).join('');
-    if (!shown.length) {
-        html = `<p class="grid__empty">Nothing live under ${esc(data.skills[active] ?? active)} yet. It's in the quest log below.</p>`;
-    } else if (active === 'all' && pending && data.showRoadmap) {
-        html += ghost(pending);
-    }
-    grid.innerHTML = html;
+    grid.innerHTML = shown.length
+        ? shown.map(card).join('')
+        : `<p class="grid__empty">Nothing here under ${esc(data.skills[active] ?? active)} yet.</p>`;
     reveal(grid);
 }
 
 function renderFilters() {
-    const live = data.projects.filter(isLive);
+    const listed = data.projects.filter(isListed);
     const counts = new Map();
-    for (const p of live) for (const s of p.skills ?? []) counts.set(s, (counts.get(s) ?? 0) + 1);
+    for (const p of listed) for (const s of p.skills ?? []) counts.set(s, (counts.get(s) ?? 0) + 1);
 
     // A filter bar over a handful of cards is noise; it shows up once there's enough to filter.
-    filters.hidden = live.length < 4;
+    filters.hidden = listed.length < 4;
 
     const chip = (id, label, n) =>
         `<button class="chip-btn" type="button" data-filter="${esc(id)}" aria-pressed="${id === active}">${esc(label)}<b>${n}</b></button>`;
-    filters.innerHTML = chip('all', 'All', live.length) +
+    filters.innerHTML = chip('all', 'All', listed.length) +
         Object.entries(data.skills)
             .filter(([id]) => counts.has(id))
             .map(([id, label]) => chip(id, label, counts.get(id)))
@@ -92,42 +73,21 @@ function setFilter(id) {
     renderGrid();
 }
 
-function renderRoadmap() {
-    const pending = data.projects.filter((p) => !isLive(p));
-    roadmap.hidden = !data.showRoadmap || !pending.length;
-    if (roadmap.hidden) return;
-
-    questList.innerHTML = pending.map((p, i) => {
-        const building = p.status === 'building';
-        const plats = (p.platforms ?? []).map((id) => data.platforms[id] ?? id).join(' / ');
-        return `
-            <li class="quest__row" data-reveal style="--d:${Math.min(i, 8) * 0.03}s">
-                <span class="hud">${String(i + 1).padStart(2, '0')}</span>
-                <span class="quest__title">${esc(p.title)}</span>
-                <span class="quest__what">${esc(p.tagline)}</span>
-                <span class="hud quest__plat">${esc(plats)}</span>
-                <span class="status${building ? ' is-building' : ''}">${building ? 'Building' : 'Queued'}</span>
-            </li>`;
-    }).join('');
-    reveal(roadmap);
-}
-
 function renderSkillProof() {
     document.querySelectorAll('.skill[data-skill]').forEach((el) => {
         const id = el.dataset.skill;
-        const all = data.projects.filter((p) => p.skills?.includes(id));
-        const live = all.filter(isLive).length;
+        const count = data.projects.filter((p) => isListed(p) && p.skills?.includes(id)).length;
         const btn = el.querySelector('.skill__proof');
 
-        if (live) {
+        if (count) {
             btn.disabled = false;
-            btn.innerHTML = `${live} ${live === 1 ? 'project' : 'projects'} &rarr;`;
+            btn.innerHTML = `${count} ${count === 1 ? 'project' : 'projects'} &rarr;`;
             btn.addEventListener('click', () => {
                 setFilter(id);
                 document.getElementById('work').scrollIntoView();
             });
         } else {
-            btn.textContent = all.length ? 'On the bench' : '';
+            btn.remove();
         }
     });
 }
@@ -163,7 +123,6 @@ try {
     if (wanted && data.skills[wanted]) active = wanted;
     renderFilters();
     renderGrid();
-    renderRoadmap();
     renderSkillProof();
 } catch (err) {
     console.error(err);
