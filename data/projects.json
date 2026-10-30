@@ -68,7 +68,6 @@
       "title": "Neon Rush",
       "tagline": "A three-lane endless runner for the browser, built small but structured like a production game.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, UI, build",
       "skills": [
         "gameplay",
@@ -97,9 +96,6 @@
       },
       "build": {
         "repo": "roadandcode/neon-rush"
-      },
-      "links": {
-        "source": "https://github.com/roadandcode/neon-rush"
       },
       "summary": [
         "Neon Rush is my take on the endless runner: three lanes, a jump, a slide, three kinds of hazard, pickups with a combo multiplier, and a difficulty curve that speeds the run up without shrinking the time you have to react.",
@@ -149,7 +145,6 @@
       "title": "Cine Director",
       "tagline": "First Light: a 78-second film shot with Cinemachine and cut on one Timeline, with notes on every shot.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: direction, code, set, sound, build",
       "skills": [
         "animation",
@@ -232,7 +227,6 @@
       "title": "Tactica AI",
       "tagline": "Grid tactics against a hand-written behaviour tree that shows its reasoning for every move.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, AI, models, sound, build",
       "skills": [
         "ai",
@@ -317,7 +311,6 @@
       "title": "Plane Simulation",
       "tagline": "Take off, fly the circuit and land a jet on a flight model written from scratch, then read a debrief that grades the flight like a check ride.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, flight model, UI, sound, build",
       "skills": [
         "gameplay",
@@ -414,7 +407,6 @@
       "title": "Rig Studio",
       "tagline": "A rigged character with every layer on a switch: head look, foot planting, hand reach and a breathing constraint of my own.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, rigging, character, animation, sound, build",
       "skills": [
         "animation",
@@ -501,7 +493,6 @@
       "title": "DevKit Pro",
       "tagline": "Four Unity editor tools I kept rewriting, as one package that installs by Git URL and also runs from the command line.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, tests, docs",
       "skills": [
         "tools",
@@ -536,9 +527,6 @@
           "size": "62 KB"
         }
       ],
-      "links": {
-        "source": "https://github.com/roadandcode/devkit-pro"
-      },
       "summary": [
         "Every project of mine ended up with the same handful of editor scripts: something to find broken references before a build did, something to make every platform's build the same way twice, something to tell me what was really in the Addressables groups. DevKit Pro is those tools written once, properly, as a Unity package: a Scene and Asset Validator, a Build Runner, an Addressables Audit and a ScriptableObject Browser.",
         "Each one is a window in the editor and also a command. The command writes a report, as JSON or as text, and ends with an exit code, so the check I run by hand is the same check a build script can fail on.",
@@ -589,7 +577,6 @@
       "title": "Hitscan",
       "tagline": "A fast first-person arena shooter on Photon Fusion: predicted movement, shots that count the way you saw them, and bots when you are alone.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, netcode, bots, level, models, sound, build",
       "skills": [
         "multiplayer",
@@ -681,7 +668,6 @@
       "title": "Casino Suite",
       "tagline": "A free-to-play casino on a server written the way a real one is: a ledger that always balances, bets taken exactly once on a bad network, and outcomes you can check.",
       "status": "live",
-      "year": "2026",
       "role": "Solo: design, code, server, maths, art tooling, sound, build",
       "skills": [
         "gameplay",

@@ -25,10 +25,7 @@ function actions(p) {
     for (const d of p.downloads ?? []) {
         out.push(`<a class="btn" href="${esc(d.url)}">${ICON.down}${esc(d.label)}${d.size ? `<small>${esc(d.size)}</small>` : ''}</a>`);
     }
-    const extra = [['source', 'Source'], ['backend', 'Backend source'], ['api', 'API docs']];
-    for (const [key, label] of extra) {
-        if (l[key]) out.push(`<a class="btn" href="${esc(l[key])}" target="_blank" rel="noopener">${label}${ICON.out}</a>`);
-    }
+    if (l.api) out.push(`<a class="btn" href="${esc(l.api)}" target="_blank" rel="noopener">API docs${ICON.out}</a>`);
     return out.join('');
 }
 
@@ -95,7 +92,6 @@ function spec(p, data) {
     const rows = [];
     const tags = (ids, map) => `<ul class="tags">${ids.map((id) => `<li class="tag">${esc(map?.[id] ?? id)}</li>`).join('')}</ul>`;
     if (p.role) rows.push(['Role', esc(p.role)]);
-    if (p.year) rows.push(['Year', esc(p.year)]);
     if (p.platforms?.length) rows.push(['Platforms', tags(p.platforms, data.platforms)]);
     if (p.skills?.length) rows.push(['Proves', tags(p.skills, data.skills)]);
     if (p.stack?.length) rows.push(['Stack', tags(p.stack)]);
