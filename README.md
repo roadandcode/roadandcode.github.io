@@ -6,7 +6,7 @@ My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no fram
 
 - `index.html` is the home page. Hero, skills, experience, about and contact are written straight into the HTML.
 - `project.html` is one template for every project page, opened as `project.html?id=<id>`.
-- `data/projects.json` holds every project. The grid, the filters, the quest log and the project pages are all rendered from it.
+- `data/projects.json` holds every project. The grid, the filters and the project pages are all rendered from it.
 - `assets/js/hero.js` is the contour-map shader behind the hero (WebGL2, with a CSS gradient as the fallback).
 - `tools/build.mjs` assembles `dist/` for deployment: the pages above plus each project's WebGL build under `play/<id>/`.
 - `builds/<id>/` holds the WebGL build of a project whose own repo is not public.
@@ -18,20 +18,22 @@ My portfolio site, hosted on Vercel. Plain HTML, CSS and JavaScript with no fram
    - `preview.mp4`, a 4-8 second muted loop for the card hover, ideally under 500 KB
    - screenshots, if there are any
 2. Add an entry to `data/projects.json` using the fields below.
-3. Set `"status": "live"` once there's something to play. Until then the project only shows in the quest log.
+3. Set `"status": "live"` once there's something to play. Until then it appears nowhere on the site, and its address says there's no such project.
 
 | Field | Notes |
 | --- | --- |
 | `id`, `title`, `tagline` | Required |
 | `status` | `live`, `building` or `planned` |
+| `hidden` | `true` keeps a live project's page at its address but takes it out of the grid, the filter counts and the next-project links. Delete the line to bring it back |
+| `orientation` | `landscape`, `portrait` or `any`: what the game is built for. Fullscreen locks to it where the browser allows and asks the player to rotate where it does not |
 | `skills`, `platforms` | Keys from the `skills` and `platforms` maps at the top of the file |
-| `stack`, `role`, `year` | Shown in the side panel |
+| `stack`, `role` | Shown in the side panel |
 | `media.cover`, `media.preview`, `media.shots[]` | Paths under `assets/projects/<id>/` |
 | `media.trailer` | `{ "youtube": "<video id>" }` or `{ "src": "<mp4 path>" }` |
 | `build` | A WebGL build hosted on this site. `{ "repo": "roadandcode/<repo>" }` takes it from that repo's latest release (optional `tag` pins one); `{ "path": "builds/<id>" }` takes a copy committed here |
 | `links.play` | Only for builds hosted elsewhere (itch.io and so on). Embedded in the page unless `links.embed` is `false` |
 | `downloads[]` | `{ "label", "url", "size" }` for APKs and desktop zips, normally GitHub Release assets |
-| `links.source`, `links.backend`, `links.api` | Repo and API docs links |
+| `links.api` | API docs link |
 | `summary`, `highlights[]`, `metrics[]`, `architecture`, `backend`, `learned` | Page content, all optional |
 
 ## Playable builds
