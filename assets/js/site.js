@@ -1,4 +1,3 @@
-const root = document.documentElement;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Nav */
@@ -67,13 +66,12 @@ addEventListener('pointermove', (e) => {
     el.style.setProperty('--my', `${e.clientY - r.top}px`);
 }, { passive: true });
 
-/* Frame meter: feeds the hero readout and the debug panel, and only runs while one of them is visible. */
+/* Frame meter: feeds the hero readout, and only runs while the hero is visible. */
 
 const fpsEl = document.getElementById('fps');
 const samples = new Array(60).fill(16.7);
 let meterOn = false;
 let heroVisible = false;
-let debugPanel = null;
 let last = 0;
 let shown = 0;
 let cursor = 0;
@@ -89,14 +87,13 @@ function tick(now) {
         shown = now;
         const avg = samples.reduce((a, b) => a + b, 0) / samples.length;
         const fps = Math.round(1000 / avg);
-        if (fpsEl) fpsEl.textContent = String(fps);
-        if (debugPanel) drawDebug(avg, fps);
+        fpsEl.textContent = String(fps);
     }
     requestAnimationFrame(tick);
 }
 
 function syncMeter() {
-    const want = !document.hidden && ((heroVisible && !reduceMotion) || debugPanel !== null);
+    const want = !document.hidden && heroVisible && !reduceMotion;
     if (want && !meterOn) {
         meterOn = true;
         last = 0;
@@ -114,46 +111,6 @@ if (hero && fpsEl) {
     }).observe(hero);
 }
 document.addEventListener('visibilitychange', syncMeter);
-
-/* Debug draw */
-
-function drawDebug(avg, fps) {
-    const canvas = debugPanel.querySelector('canvas');
-    const ctx = canvas.getContext('2d');
-    const { width: w, height: h } = canvas;
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#ff6a2b';
-    const bar = w / samples.length;
-    for (let i = 0; i < samples.length; i++) {
-        const ms = samples[(cursor + i) % samples.length];
-        const bh = Math.min(h, (ms / 33.3) * h);
-        ctx.fillRect(i * bar, h - bh, Math.max(1, bar - 1), bh);
-    }
-    debugPanel.querySelector('[data-out]').innerHTML =
-        `${fps} fps &middot; ${avg.toFixed(1)} ms<br>` +
-        `${document.getElementsByTagName('*').length} nodes<br>` +
-        `${innerWidth}&times;${innerHeight} @${devicePixelRatio.toFixed(2)}x`;
-}
-
-function toggleDebug() {
-    if (debugPanel) {
-        debugPanel.remove();
-        debugPanel = null;
-    } else {
-        debugPanel = document.createElement('div');
-        debugPanel.className = 'debug-panel hud';
-        debugPanel.innerHTML = '<canvas width="240" height="60"></canvas><div data-out>measuring</div>';
-        document.body.append(debugPanel);
-    }
-    root.classList.toggle('debug', debugPanel !== null);
-    syncMeter();
-}
-
-addEventListener('keydown', (e) => {
-    if (e.key !== '`' || e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.target.closest?.('input, textarea, [contenteditable]')) return;
-    toggleDebug();
-});
 
 /* Misc */
 
