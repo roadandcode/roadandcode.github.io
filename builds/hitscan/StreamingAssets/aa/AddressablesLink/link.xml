@@ -16,9 +16,15 @@
   </assembly>
   <assembly fullname="RoadAndCode.Hitscan.Avatars, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="RoadAndCode.Hitscan.Avatars.Data.AvatarSettings" preserve="all" />
+    <type fullname="RoadAndCode.Hitscan.Avatars.Data.SkinBook" preserve="all" />
     <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.ArenaCamera" preserve="all" />
+    <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.CharacterRig" preserve="all" />
     <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.EffectsView" preserve="all" />
+    <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.MapStage" preserve="all" />
     <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.PlayerAvatarView" preserve="all" />
+    <type fullname="RoadAndCode.Hitscan.Avatars.Data.SkinEntry" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.MapLook" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.Hitscan.Avatars.Presentation.ViewGun" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="RoadAndCode.Hitscan.Bots, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="RoadAndCode.Hitscan.Bots.Data.BotSettings" preserve="all" />
@@ -58,6 +64,7 @@
     <type fullname="UnityEngine.Rendering.Universal.Bloom" preserve="all" />
     <type fullname="UnityEngine.Rendering.Universal.Tonemapping" preserve="all" />
     <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalCameraData" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalLightData" preserve="all" />
     <type fullname="UnityEngine.Rendering.Universal.Vignette" preserve="all" />
     <type fullname="UnityEngine.Rendering.Universal.BloomFilterModeParameter" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Rendering.Universal.DownscaleParameter" preserve="nothing" serialized="true" />
@@ -73,6 +80,11 @@
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneInstance" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.AudioListener" preserve="all" />
@@ -91,11 +103,13 @@
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.RenderSettings" preserve="all" />
     <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.SkinnedMeshRenderer" preserve="all" />
     <type fullname="UnityEngine.TextAsset" preserve="all" />
     <type fullname="UnityEngine.Texture2D" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
     <type fullname="UnityEngine.Color" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.LayerMask" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.RenderingLayerMask" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Vector2" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Vector2Int" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Vector3" preserve="nothing" serialized="true" />
@@ -114,6 +128,7 @@
     <type fullname="UnityEngine.UIElements.Button/UxmlSerializedData" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.DynamicAtlasSettings" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.Label/UxmlSerializedData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.ScrollView/UxmlSerializedData" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.Specificity" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.StyleComplexSelector" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.StyleProperty" preserve="nothing" serialized="true" />
@@ -138,6 +153,7 @@
     <type fullname="RoadAndCode.Hitscan.Rules.Match.PickupSpot" preserve="nothing" serialized="true" />
     <type fullname="RoadAndCode.Hitscan.Rules.Movement.JumpPad" preserve="nothing" serialized="true" />
     <type fullname="RoadAndCode.Hitscan.Rules.Movement.MovementTuning" preserve="nothing" serialized="true" />
+    <type fullname="RoadAndCode.Hitscan.Rules.Movement.PlayArea" preserve="nothing" serialized="true" />
     <type fullname="RoadAndCode.Hitscan.Rules.Profile.ProfileSettings" preserve="nothing" serialized="true" />
   </assembly>
 </linker>

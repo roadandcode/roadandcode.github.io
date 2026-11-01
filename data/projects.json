@@ -582,7 +582,7 @@
       "title": "Hitscan",
       "tagline": "A fast first-person arena shooter on Photon Fusion: predicted movement, shots that count the way you saw them, and bots when you are alone.",
       "status": "live",
-      "role": "Solo: design, code, netcode, bots, level, models, sound, build",
+      "role": "Solo: design, code, netcode, bots, maps, guns, sound, build",
       "skills": [
         "multiplayer",
         "gameplay",
@@ -604,48 +604,54 @@
         "Unity Test Framework"
       ],
       "media": {
-        "cover": "assets/projects/hitscan/arena.jpg",
+        "cover": "assets/projects/hitscan/fight.jpg",
         "shots": [
-          "assets/projects/hitscan/arena.jpg",
-          "assets/projects/hitscan/bounty.jpg",
-          "assets/projects/hitscan/rail.jpg",
           "assets/projects/hitscan/fight.jpg",
-          "assets/projects/hitscan/scoreboard.jpg",
-          "assets/projects/hitscan/title.jpg"
+          "assets/projects/hitscan/scope.jpg",
+          "assets/projects/hitscan/mesa.jpg",
+          "assets/projects/hitscan/lobby.jpg",
+          "assets/projects/hitscan/maps.jpg",
+          "assets/projects/hitscan/operators.jpg",
+          "assets/projects/hitscan/settings.jpg",
+          "assets/projects/hitscan/phone.jpg"
         ]
       },
       "build": {
         "path": "builds/hitscan"
       },
       "summary": [
-        "An arena shooter for up to eight. You run fast, jump twice, dash, ride jump pads and rocket-jump, and you carry three weapons from the start: a Rail that kills with a headshot, an automatic Repeater and a rocket Launcher. One player hosts and decides everything. Everyone else predicts their own movement, so the game answers your keys at once whatever the connection is doing. Bots fill the places people leave empty, so alone it is still a full match, and Practice needs no connection at all.",
-        "The default mode is Bounty. A kill is a point, and whoever leads is marked for everyone, through walls, with a price on them that grows with every kill they make. Killing them pays it, so nobody stays comfortably ahead. To play with someone, press Create room and give them the four-letter code, or send them the game's address with ?join= and the code on the end. If you host from a browser, keep the tab in front: a hidden tab all but stops."
+        "An arena shooter for up to eight, on four maps. You run fast, jump twice, slide, ride jump pads and rocket-jump, and you carry three guns from the start. The sniper is wild from the hip and exact through a scope that comes up in a tenth of a second. The assault rifle is accurate in short bursts, but run with the trigger held and the shots scatter. The rocket launcher is the third. One player hosts and decides everything. Everyone else predicts their own movement, so the game answers at once whatever the connection is doing. Bots fill the places people leave empty, so alone it is still a full match, and Practice needs no connection at all.",
+        "It starts in a lobby where you choose a map, an outfit and a mode, and every setting is there, down to remapping each key. On a phone there is a stick, a drag to aim, and buttons. The default mode is Bounty. A kill is a point, and whoever leads is marked for everyone, through walls, with a price on them that grows with every kill they make. To play with someone, press Create room and give them the four-letter code, or send them the game's address with ?join= and the code on the end. If you host from a browser, keep the tab in front: a hidden tab all but stops."
       ],
       "highlights": [
         "The host decides everything and simulates 64 ticks a second. A client predicts its own movement and weapons and is corrected when the host disagrees.",
-        "Lag compensation: the host judges a shot against where the target was on the shooter's screen. I measured it with a strafing target at a 100 ms ping. Of 74 shots that hit on the shooter's screen the host counted 74, and with rewinding switched off, between 3 and 6.",
-        "Keyboard and mouse, a gamepad and a bot's brain all produce the same small command. From the line where it is taken, the simulation does not know which of them it came from.",
-        "Bots with three temperaments and three difficulties, walking a map sampled from the arena's own colliders. They aim worse the faster you cross their view, hold a grudge against whoever killed them last, and go for the leader.",
-        "Bounty, Classic and Team Deathmatch. Five mutators a room can pick from: instagib, low gravity, rockets only, vampire and turbo. Medals, and a profile whose levels unlock colours and nothing else.",
-        "No art was downloaded. The arena, the bodies and the weapons are generated from code, and every sound is synthesised when the game starts.",
+        "Lag compensation: the host judges a shot against where the target was on the shooter's screen. I measured it with a strafing target at a 100 ms ping. Of 62 shots that hit on the shooter's screen the host counted 62, and with rewinding switched off, 4.",
+        "Recoil and spread are in the simulation, not just the view. They are a pure function of the state and the tick, so the shooter and the host work out the same shot, and the crosshair opens by exactly as far as the next shot could go.",
+        "Keyboard and mouse, a gamepad, a phone's touch controls and a bot's brain all produce the same small command. From the line where it is taken, the simulation does not know which of them it came from.",
+        "The guns are built only from Unity's cubes and cylinders, with a bolt and a magazine that really move. The arms are solved onto each gun's grips every frame, and the player sees only their own hands.",
+        "Enemies are easy to find at range: a red outline that stays the same width at any distance, and a mark over anyone in plain sight. Neither shows through a wall.",
+        "Nothing can throw a player out of a map. Invisible walls and a roof stop them, and under those the rules hold their feet inside a box, whatever a low-gravity round or a rocket has done. A test tries to get out and fails.",
+        "Bots with three temperaments and three difficulties, walking a map sampled from each arena's own colliders. They aim worse the faster you cross their view, hold a grudge against whoever killed them last, and go for the leader.",
+        "Bounty, Classic and Team Deathmatch. Five mutators a room can pick from: instagib, low gravity, rockets only, vampire and turbo. Medals, and a profile whose levels unlock colours and outfits and nothing else.",
+        "The maps, skies and guns are generated from code, and every sound is synthesised when the game starts. The characters and their animations are Quaternius's, under CC0; the slide, the jump and the reload are my own, added on the same skeleton.",
         "Wired by hand, with no dependency injection container. Two classes make everything with new, in order, so how the game starts can be read from top to bottom."
       ],
       "metrics": [
         {
           "label": "Download",
-          "value": "18.6 MB"
+          "value": "33 MB"
         },
         {
           "label": "Hits counted at 100 ms ping",
-          "value": "74 of 74"
+          "value": "62 of 62"
         },
         {
           "label": "CPU time per frame",
-          "value": "2.2 ms"
+          "value": "3.2 ms"
         },
         {
           "label": "Draw calls",
-          "value": "80 to 125"
+          "value": "about 110"
         },
         {
           "label": "One client sends",
@@ -653,11 +659,11 @@
         },
         {
           "label": "Automated tests",
-          "value": "422"
+          "value": "529"
         }
       ],
       "architecture": [
-        "The rules of the game are plain C# with no Unity objects and no network in them: movement, weapons, damage, scoring, the bounty, medals. Every function is handed the tick it is for. That is what lets Fusion run the same tick twice when a correction arrives and get the same answer, and it is what lets 180 tests check the rules without a scene.",
+        "The rules of the game are plain C# with no Unity objects and no network in them: movement, weapons, damage, scoring, the bounty, medals. Every function is handed the tick it is for. That is what lets Fusion run the same tick twice when a correction arrives and get the same answer, and it is what lets 214 tests check the rules without a scene.",
         "Only one module can see Fusion. Its networked objects are adapters: they read networked numbers into plain values, ask the rules, and write the answer back. The screens, the sound, the effects and the profile never see the network either. They listen to the same messages, a shot, a hit, a kill, and know nothing of each other.",
         "A frame has a stated order, and it mattered. Fusion simulates before Unity's Update runs, so input gathered in Update would always be a frame old by the time it was simulated. It is read the moment the Input System has it."
       ],
@@ -665,7 +671,8 @@
         "I did not know whether a browser could host a room. It can, and the measurements say what it costs. Every connection to or from a browser goes through a relay: about 200 ms round trip from my desk, against about 25 ms between two desktop builds. And a hosting tab that is hidden steps once a second. So the game is built to play well at that ping, and a browser host has to stay in front.",
         "Two flaws only showed when I traced the first seconds of a round. Bots were allowed to walk during the countdown, and one would be standing with a line on the player the instant the weapons went live. And four spawn points could see each other down one corridor. Now the countdown holds everyone still, and the tool that builds the arena counts spawn points in sight of each other and has to report none.",
         "In a browser, Unity says the mouse is captured from the moment it is asked, whether or not the browser has granted it. Only the page knows, so the game asks the page.",
-        "All of these numbers are from one fast desktop, with every player on that same machine. I have not measured a real network between two computers, a gamepad, slow hardware or a phone. And nobody has listened to the sound yet: I checked its levels, not how it sounds."
+        "A scoped shot at a wall a few steps away turned the whole lens white. At that zoom the flash of the hit filled the view. I only saw it by playing a build with simulated fingers on a phone-shaped page, so an impact now has a limit on how much of the picture it can cover.",
+        "All of these numbers are from one fast desktop, with every player on that same machine. I have not measured a real network between two computers, a gamepad, slow hardware or a phone's frame rate. The touch controls were tested with simulated fingers, and the game has been installed on one real phone. And I checked the sound's levels, not how it sounds."
       ],
       "orientation": "landscape"
     },
